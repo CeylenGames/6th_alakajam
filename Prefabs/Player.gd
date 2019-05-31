@@ -16,9 +16,9 @@ var actions = Array()
 
 func _ready():
 	if not playerOne:
-		actions = ["ui_left", "ui_right", "ui_up"]
+		actions = ["ui_left", "ui_right", "ui_up", "ui_down"]
 	else:
-		actions = ["ui_left_2", "ui_right_2", "ui_up_2"]
+		actions = ["ui_left_2", "ui_right_2", "ui_up_2", "ui_down_2"]
 
 func _physics_process(delta):
 	if not is_on_floor():
@@ -34,7 +34,11 @@ func _physics_process(delta):
 			velocity.x = Speed
 	else:
 		velocity.x = 0
-		
+	
+	if Input.is_action_pressed(actions[3]):
+		can_jump = false
+		print("dodge")
+	
 	if Input.is_action_just_pressed(actions[2]):
 		if can_jump:
 			velocity.y = -JumpForce
