@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Prefabs/Floor.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Prefabs/Player.tscn" type="PackedScene" id=2]
+
+[node name="World" type="Node"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 0.5, 0.5 )
+
+[node name="Floor" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, 170 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( -219.553, -57.5564 )
+playerOne = true
+Speed = 150.0
+limits = [ -235.0, -40.0 ]
+
+[node name="Player2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 218.408, -56.8636 )
+limits = [ 40.0, 235.0 ]
