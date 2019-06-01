@@ -33,14 +33,13 @@ zoom = Vector2( 0.5, 0.5 )
 position = Vector2( -0.358486, 170 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( -219.553, -57.5564 )
+position = Vector2( -363.853, -69.4042 )
 playerOne = true
-Speed = 150.0
-limits = [ -235.0, -40.0 ]
+limits = [ -364.0, -40.0 ]
 
 [node name="Player2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 218.408, -56.8636 )
-limits = [ 40.0, 235.0 ]
+limits = [ 40.0, 364.0 ]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

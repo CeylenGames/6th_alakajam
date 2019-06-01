@@ -6,7 +6,7 @@ export (bool) var playerOne
 var can_jump = false
 
 export (float) var gravity = 400
-export (float) var Speed = 20
+export (float) var Speed = 150
 export (float) var JumpForce = 300
 
 var velocity = Vector2(0, 0)
@@ -38,10 +38,14 @@ func _physics_process(delta):
 
 	if Input.is_action_pressed(actions[0]):
 		if position.x > limits[0]:
-			velocity.x = -Speed 
+			velocity.x = -Speed
+		else:
+			position.x = limits[0]
 	elif Input.is_action_pressed(actions[1]):
 		if position.x < limits[1]:
 			velocity.x = Speed
+		else:
+			position.x = limits[1]
 	else:
 		velocity.x = 0
 	
