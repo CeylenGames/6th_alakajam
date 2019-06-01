@@ -1,29 +1,24 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Prefabs/Floor.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Camera.gd" type="Script" id=2]
 [ext_resource path="res://Prefabs/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Assets/fonts/Roboto/Roboto-Regular.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://Prefabs/Wall.tscn" type="PackedScene" id=5]
-
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.0235294, 1, 0, 1 )
-
-[sub_resource type="StyleBoxFlat" id=2]
-bg_color = Color( 0.164706, 0.164706, 0.164706, 1 )
-
-[sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 0.364706, 0.313726, 1, 1 )
+[ext_resource path="res://Assets/ui/fond.png" type="Texture" id=4]
+[ext_resource path="res://Assets/ui/progress.png" type="Texture" id=5]
+[ext_resource path="res://Assets/ui/progress_stamina.png" type="Texture" id=6]
+[ext_resource path="res://Assets/fonts/Roboto/Roboto-Regular.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://Scripts/TimerText.gd" type="Script" id=8]
+[ext_resource path="res://Prefabs/Wall.tscn" type="PackedScene" id=9]
 
 [sub_resource type="DynamicFont" id=4]
 size = 30
 use_filter = true
-font_data = ExtResource( 4 )
+font_data = ExtResource( 7 )
 
 [sub_resource type="DynamicFont" id=5]
 size = 70
 use_filter = true
-font_data = ExtResource( 4 )
+font_data = ExtResource( 7 )
 
 [node name="World" type="Node"]
 
@@ -32,6 +27,7 @@ position = Vector2( 0, 400 )
 scale = Vector2( 1.6, 1.6 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 0, 170 )
 current = true
 process_mode = 0
 limit_smoothed = true
@@ -41,43 +37,47 @@ player_1 = NodePath("../Player")
 player_2 = NodePath("../Player2")
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( -190, 105 )
+position = Vector2( -190, 183 )
 playerOne = true
+HealthBar = NodePath("../CanvasLayer/Player_1_Info/HealthBar")
+StaminaBar = NodePath("../CanvasLayer/Player_1_Info/StaminaBar")
 
 [node name="Player2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 190, 120 )
+position = Vector2( 190, 183 )
+HealthBar = NodePath("../CanvasLayer/Player_2_Info/HealthBar")
+StaminaBar = NodePath("../CanvasLayer/Player_2_Info/StaminaBar")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Player_1_Info" type="Control" parent="CanvasLayer"]
+editor/display_folded = true
 margin_right = 40.0
 margin_bottom = 40.0
 
-[node name="HealthBar" type="ProgressBar" parent="CanvasLayer/Player_1_Info"]
-margin_left = 10.0
-margin_top = 35.0
-margin_right = 673.0
-margin_bottom = 72.0
-custom_styles/fg = SubResource( 1 )
-custom_styles/bg = SubResource( 2 )
+[node name="HealthBar" type="TextureProgress" parent="CanvasLayer/Player_1_Info"]
+margin_left = 100.0
+margin_top = 37.0
+margin_right = 680.0
+margin_bottom = 74.0
 value = 100.0
-percent_visible = false
+texture_under = ExtResource( 4 )
+texture_progress = ExtResource( 5 )
+nine_patch_stretch = true
 
-[node name="StaminaBar" type="ProgressBar" parent="CanvasLayer/Player_1_Info"]
-margin_left = 10.0
-margin_top = 72.0
-margin_right = 640.0
-margin_bottom = 94.0
-custom_styles/fg = SubResource( 3 )
-custom_styles/bg = SubResource( 2 )
+[node name="StaminaBar" type="TextureProgress" parent="CanvasLayer/Player_1_Info"]
+margin_left = 100.0
+margin_top = 74.0
+margin_right = 630.0
+margin_bottom = 96.0
 value = 100.0
-percent_visible = false
+texture_under = ExtResource( 4 )
+texture_progress = ExtResource( 6 )
+nine_patch_stretch = true
 
 [node name="Label" type="Label" parent="CanvasLayer/Player_1_Info"]
-margin_left = 18.0
-margin_top = 1.0
-margin_right = 264.0
-margin_bottom = 37.0
+margin_left = 100.0
+margin_right = 346.0
+margin_bottom = 36.0
 custom_fonts/font = SubResource( 4 )
 text = "Player One Name"
 align = 1
@@ -85,35 +85,38 @@ valign = 2
 autowrap = true
 
 [node name="Player_2_Info" type="Control" parent="CanvasLayer"]
+editor/display_folded = true
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -40.0
 margin_bottom = 40.0
 
-[node name="HealthBar" type="ProgressBar" parent="CanvasLayer/Player_2_Info"]
+[node name="HealthBar" type="TextureProgress" parent="CanvasLayer/Player_2_Info"]
 margin_left = -646.0
 margin_top = 35.0
-margin_right = 34.0
+margin_right = -66.0
 margin_bottom = 70.0
-custom_styles/fg = SubResource( 1 )
-custom_styles/bg = SubResource( 2 )
 value = 100.0
-percent_visible = false
+texture_under = ExtResource( 4 )
+texture_progress = ExtResource( 5 )
+fill_mode = 1
+nine_patch_stretch = true
 
-[node name="StaminaBar" type="ProgressBar" parent="CanvasLayer/Player_2_Info"]
+[node name="StaminaBar" type="TextureProgress" parent="CanvasLayer/Player_2_Info"]
 margin_left = -596.0
 margin_top = 70.0
-margin_right = 34.0
+margin_right = -66.0
 margin_bottom = 92.0
-custom_styles/fg = SubResource( 3 )
-custom_styles/bg = SubResource( 2 )
 value = 100.0
-percent_visible = false
+texture_under = ExtResource( 4 )
+texture_progress = ExtResource( 6 )
+fill_mode = 1
+nine_patch_stretch = true
 
 [node name="Label" type="Label" parent="CanvasLayer/Player_2_Info"]
-margin_left = -223.0
+margin_left = -316.0
 margin_top = 1.0
-margin_right = 23.0
+margin_right = -70.0
 margin_bottom = 37.0
 custom_fonts/font = SubResource( 4 )
 text = "Player Two Name"
@@ -121,26 +124,32 @@ align = 1
 valign = 2
 autowrap = true
 
-[node name="Timer" type="Label" parent="CanvasLayer"]
+[node name="TimerText" type="Label" parent="CanvasLayer"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -57.0
-margin_right = 57.0
+margin_left = -72.5
+margin_right = 72.5
 margin_bottom = 105.0
 custom_fonts/font = SubResource( 5 )
-text = "0"
+text = "100"
 align = 1
 valign = 1
-autowrap = true
+clip_text = true
+script = ExtResource( 8 )
 
-[node name="Wall" parent="." instance=ExtResource( 5 )]
+[node name="Timer" type="Timer" parent="CanvasLayer/TimerText"]
+process_mode = 0
+autostart = true
+
+[node name="Wall" parent="." instance=ExtResource( 9 )]
 position = Vector2( -500, 20 )
 
-[node name="Wall2" parent="." instance=ExtResource( 5 )]
+[node name="Wall2" parent="." instance=ExtResource( 9 )]
 position = Vector2( 500, 20 )
 
-[node name="Wall3" parent="." instance=ExtResource( 5 )]
+[node name="Wall3" parent="." instance=ExtResource( 9 )]
 position = Vector2( -120, 20 )
 
-[node name="Wall4" parent="." instance=ExtResource( 5 )]
+[node name="Wall4" parent="." instance=ExtResource( 9 )]
 position = Vector2( 120, 20 )
+[connection signal="timeout" from="CanvasLayer/TimerText/Timer" to="CanvasLayer/TimerText" method="_on_Timer_timeout"]
