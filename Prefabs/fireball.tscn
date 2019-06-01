@@ -22,7 +22,7 @@ height = 25.5
 ]]
 z_index = 2
 frames = SubResource( 1 )
-frame = 1
+frame = 2
 playing = true
 script = ExtResource( 4 )
 
@@ -32,4 +32,5 @@ script = ExtResource( 4 )
 position = Vector2( -4, 0.5 )
 rotation = 1.5708
 shape = SubResource( 2 )
+[connection signal="area_shape_entered" from="Area2D" to="." method="_on_Area2D_area_shape_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

@@ -29,6 +29,7 @@ func _process(delta):
 		
 		if owner.playerOne:
 			instance.Speed = 8
+			instance.flip_h = true
 		else:
 			instance.Speed = -8
 		

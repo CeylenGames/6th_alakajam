@@ -1171,6 +1171,7 @@ default_length = 8.0
 position = Vector2( -36.338, -15.2564 )
 
 [node name="Stamina_wait" type="Timer" parent="."]
+wait_time = 1.5
 one_shot = true
 
 [node name="Stamina_regen" type="Timer" parent="."]

@@ -17,7 +17,7 @@ var actions = Array()
 # Gameplay
 
 var MaxHealth = 10
-var MaxStamina = 10
+var MaxStamina = 3
 
 var Health = MaxHealth
 var Stamina = MaxStamina
@@ -97,12 +97,15 @@ func manage_animations():
 func updateUi():
 	health_bar.value = (float(Health)/float(MaxHealth)) * health_bar.max_value
 	stamina_bar.value = (float(Stamina)/float(MaxStamina)) * stamina_bar.max_value
+	
+func die():
+	get_node("/root/World/Master").win(playerOne)
 
 func take_damage(amount):
 	var result = Health - amount
 	if result <= 0:
 		result = 0
-		print("died")
+		die()
 	Health = result
 	updateUi()
 
@@ -116,7 +119,6 @@ func use_stamina(amount):
 	$Stamina_wait.start()
 
 # Timers
-
 func _on_Stamina_wait_timeout():
 	$Stamina_regen.start()
 
