@@ -11,8 +11,6 @@ export (float) var JumpForce = 300
 
 var velocity = Vector2(0, 0)
 
-export (Array, float) var limits
-
 #Inputs
 var actions = Array()
 
@@ -37,15 +35,9 @@ func _physics_process(delta):
 		can_jump = true
 
 	if Input.is_action_pressed(actions[0]):
-		if position.x > limits[0]:
-			velocity.x = -Speed
-		else:
-			position.x = limits[0]
+		velocity.x = -Speed
 	elif Input.is_action_pressed(actions[1]):
-		if position.x < limits[1]:
-			velocity.x = Speed
-		else:
-			position.x = limits[1]
+		velocity.x = Speed
 	else:
 		velocity.x = 0
 	

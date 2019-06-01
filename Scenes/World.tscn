@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Prefabs/Floor.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Prefabs/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Assets/fonts/Roboto/Roboto-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Scripts/Camera.gd" type="Script" id=2]
+[ext_resource path="res://Prefabs/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/fonts/Roboto/Roboto-Regular.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Prefabs/Wall.tscn" type="PackedScene" id=5]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.0235294, 1, 0, 1 )
@@ -16,53 +18,56 @@ bg_color = Color( 0.364706, 0.313726, 1, 1 )
 [sub_resource type="DynamicFont" id=4]
 size = 30
 use_filter = true
-font_data = ExtResource( 3 )
+font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=5]
 size = 70
 use_filter = true
-font_data = ExtResource( 3 )
+font_data = ExtResource( 4 )
 
 [node name="World" type="Node"]
 
+[node name="Floor" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, 400 )
+scale = Vector2( 1.6, 1.6 )
+
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-zoom = Vector2( 0.5, 0.5 )
+process_mode = 0
+limit_smoothed = true
+smoothing_enabled = true
+script = ExtResource( 2 )
+player_1 = NodePath("../Player")
+player_2 = NodePath("../Player2")
 
-[node name="Floor" parent="." instance=ExtResource( 1 )]
-position = Vector2( -0.358486, 170 )
-
-[node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( -363.853, -69.4042 )
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( -190, 105 )
 playerOne = true
-limits = [ -364.0, -40.0 ]
 
-[node name="Player2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 218.408, -56.8636 )
-limits = [ 40.0, 364.0 ]
+[node name="Player2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 190, 120 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Player_1_Info" type="Control" parent="CanvasLayer"]
-editor/display_folded = true
 margin_right = 40.0
 margin_bottom = 40.0
 
 [node name="HealthBar" type="ProgressBar" parent="CanvasLayer/Player_1_Info"]
-margin_left = 17.0
+margin_left = 10.0
 margin_top = 35.0
-margin_right = 437.0
-margin_bottom = 58.0
+margin_right = 673.0
+margin_bottom = 72.0
 custom_styles/fg = SubResource( 1 )
 custom_styles/bg = SubResource( 2 )
 value = 100.0
 percent_visible = false
 
 [node name="StaminaBar" type="ProgressBar" parent="CanvasLayer/Player_1_Info"]
-margin_left = 17.0
-margin_top = 58.0
-margin_right = 417.0
-margin_bottom = 72.0
+margin_left = 10.0
+margin_top = 72.0
+margin_right = 640.0
+margin_bottom = 94.0
 custom_styles/fg = SubResource( 3 )
 custom_styles/bg = SubResource( 2 )
 value = 100.0
@@ -80,27 +85,26 @@ valign = 2
 autowrap = true
 
 [node name="Player_2_Info" type="Control" parent="CanvasLayer"]
-editor/display_folded = true
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -40.0
 margin_bottom = 40.0
 
 [node name="HealthBar" type="ProgressBar" parent="CanvasLayer/Player_2_Info"]
-margin_left = -394.0
+margin_left = -646.0
 margin_top = 35.0
-margin_right = 26.0
-margin_bottom = 58.0
+margin_right = 34.0
+margin_bottom = 70.0
 custom_styles/fg = SubResource( 1 )
 custom_styles/bg = SubResource( 2 )
 value = 100.0
 percent_visible = false
 
 [node name="StaminaBar" type="ProgressBar" parent="CanvasLayer/Player_2_Info"]
-margin_left = -374.0
-margin_top = 58.0
-margin_right = 26.0
-margin_bottom = 72.0
+margin_left = -596.0
+margin_top = 70.0
+margin_right = 34.0
+margin_bottom = 92.0
 custom_styles/fg = SubResource( 3 )
 custom_styles/bg = SubResource( 2 )
 value = 100.0
@@ -128,3 +132,15 @@ text = "0"
 align = 1
 valign = 1
 autowrap = true
+
+[node name="Wall" parent="." instance=ExtResource( 5 )]
+position = Vector2( -500, 20 )
+
+[node name="Wall2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 500, 20 )
+
+[node name="Wall3" parent="." instance=ExtResource( 5 )]
+position = Vector2( -120, 20 )
+
+[node name="Wall4" parent="." instance=ExtResource( 5 )]
+position = Vector2( 120, 20 )
