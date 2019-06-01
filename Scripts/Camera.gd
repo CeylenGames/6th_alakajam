@@ -9,7 +9,7 @@ onready var player_two = get_node(player_2)
 
 func change_position():
 	var new_pos = (player_one.position + player_two.position)/2
-	position = new_pos
+	position.x = new_pos.x
 	var distance = player_one.position.distance_to(player_two.position) * 2
 	var zoom_factor = distance * 0.0005
 	

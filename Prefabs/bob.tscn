@@ -1170,13 +1170,8 @@ default_length = 8.0
 [node name="Position2D" type="Position2D" parent="."]
 position = Vector2( -36.338, -15.2564 )
 
-[node name="Health_wait" type="Timer" parent="."]
-one_shot = true
-
 [node name="Stamina_wait" type="Timer" parent="."]
 one_shot = true
-
-[node name="Health_regen" type="Timer" parent="."]
 
 [node name="Stamina_regen" type="Timer" parent="."]
 
@@ -1185,7 +1180,5 @@ script = ExtResource( 4 )
 Animation_Player = NodePath("../bob_dont_mofify/AnimationPlayer")
 light_attack = ExtResource( 5 )
 pos = NodePath("../Position2D")
-[connection signal="timeout" from="Health_wait" to="." method="_on_Health_wait_timeout"]
 [connection signal="timeout" from="Stamina_wait" to="." method="_on_Stamina_wait_timeout"]
-[connection signal="timeout" from="Health_regen" to="." method="_on_Health_regen_timeout"]
 [connection signal="timeout" from="Stamina_regen" to="." method="_on_Stamina_regen_timeout"]

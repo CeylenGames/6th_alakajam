@@ -99,14 +99,12 @@ func updateUi():
 	stamina_bar.value = (float(Stamina)/float(MaxStamina)) * stamina_bar.max_value
 
 func take_damage(amount):
-	$Health_regen.stop()
 	var result = Health - amount
 	if result <= 0:
 		result = 0
 		print("died")
 	Health = result
 	updateUi()
-	$Health_wait.start()
 
 func use_stamina(amount):
 	$Stamina_regen.stop()
@@ -118,14 +116,6 @@ func use_stamina(amount):
 	$Stamina_wait.start()
 
 # Timers
-func _on_Health_wait_timeout():
-	$Health_regen.start()
-
-func _on_Health_regen_timeout():
-	Health += 1
-	updateUi()
-	if Health == MaxHealth:
-		$Health_regen.stop()
 
 func _on_Stamina_wait_timeout():
 	$Stamina_regen.start()
