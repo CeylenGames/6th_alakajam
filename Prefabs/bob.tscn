@@ -1,7 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://Assets/Bob/bob_parts.png" type="Texture" id=1]
-[ext_resource path="res://Assets/Bob/bob.png" type="Texture" id=2]
+[ext_resource path="res://Prefabs/Player.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Bob/bob_parts.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Bob/bob.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/Attacks.gd" type="Script" id=4]
+[ext_resource path="res://Prefabs/fireball.tscn" type="PackedScene" id=5]
 
 [sub_resource type="CapsuleShape2D" id=1]
 height = 68.4652
@@ -639,6 +642,7 @@ tracks/25/keys = {
 }
 
 [sub_resource type="Animation" id=4]
+resource_name = "Walk"
 length = 1.6
 loop = true
 step = 0.2
@@ -955,8 +959,12 @@ tracks/25/keys = {
 "values": [ 192.466, 165.898, 165.898, 183.627, 175.224, 178.343, 178.343 ]
 }
 
-[node name="Bob (King of Nudism)" type="KinematicBody2D"]
+[node name="Bob (King of Nudism)" type="KinematicBody2D" groups=[
+"Player",
+]]
 position = Vector2( 0, -45 )
+script = ExtResource( 1 )
+Animation_Player = NodePath("bob_dont_mofify/AnimationPlayer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -970,7 +978,7 @@ __meta__ = {
 
 [node name="brasR" type="Polygon2D" parent="Polygons"]
 position = Vector2( -49.0926, -25.0813 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 skeleton = NodePath("../../Skeleton2D")
 polygon = PoolVector2Array( 46.25, 3.75, 57.75, 3.75, 57.75, 15, 56.5, 22.75, 47.5, 22.25, 44.5, 13.75 )
 uv = PoolVector2Array( 46.25, 3.75, 57.75, 3.75, 57.75, 15, 56.5, 22.75, 47.5, 22.25, 44.5, 13.75 )
@@ -978,7 +986,7 @@ bones = [ NodePath("chest"), PoolRealArray( 0, 0, 0, 0, 0, 0 ), NodePath("chest/
 
 [node name="avant_brasR" type="Polygon2D" parent="Polygons"]
 position = Vector2( -49.1562, -29.051 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 skeleton = NodePath("../../Skeleton2D")
 polygon = PoolVector2Array( 47.75, 22, 57.25, 22.25, 57.5, 34.5, 56, 42.5, 46.75, 42.25, 46.25, 33.25 )
 uv = PoolVector2Array( 47.75, 22, 57.25, 22.25, 57.5, 34.5, 56, 42.5, 46.75, 42.25, 46.25, 33.25 )
@@ -986,7 +994,7 @@ bones = [ NodePath("chest"), PoolRealArray( 0, 0, 0, 0, 0, 0 ), NodePath("chest/
 
 [node name="mainR" type="Polygon2D" parent="Polygons"]
 position = Vector2( -49.0227, -31.8889 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 skeleton = NodePath("../../Skeleton2D")
 polygon = PoolVector2Array( 56, 53, 47.25, 52.75, 47.5, 42, 55.25, 42.25 )
 uv = PoolVector2Array( 56, 53, 47.25, 52.75, 47.5, 42, 55.25, 42.25 )
@@ -994,7 +1002,7 @@ bones = [ NodePath("chest"), PoolRealArray( 0, 0, 0, 0 ), NodePath("chest/head")
 
 [node name="piedR" type="Polygon2D" parent="Polygons"]
 position = Vector2( -41.1705, -49.9215 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 skeleton = NodePath("../../Skeleton2D")
 polygon = PoolVector2Array( 46.75, 86.75, 46.75, 101.25, 31.5, 100.75, 32.25, 86.25 )
 uv = PoolVector2Array( 46.75, 86.75, 46.75, 101.25, 31.5, 100.75, 32.25, 86.25 )
@@ -1002,7 +1010,7 @@ bones = [ NodePath("chest"), PoolRealArray( 0, 0, 0, 0 ), NodePath("chest/head")
 
 [node name="molletR" type="Polygon2D" parent="Polygons"]
 position = Vector2( -49.8761, -49.8622 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 skeleton = NodePath("../../Skeleton2D")
 polygon = PoolVector2Array( 48, 93, 55.25, 93.5, 57.75, 83.25, 57, 73.75, 47.25, 72.75, 46.5, 84.5 )
 uv = PoolVector2Array( 48, 93, 55.25, 93.5, 57.75, 83.25, 57, 73.75, 47.25, 72.75, 46.5, 84.5 )
@@ -1010,7 +1018,7 @@ bones = [ NodePath("chest"), PoolRealArray( 0, 0, 0, 0, 0, 0 ), NodePath("chest/
 
 [node name="cuisseR" type="Polygon2D" parent="Polygons"]
 position = Vector2( -39.1701, -49.082 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 skeleton = NodePath("../../Skeleton2D")
 polygon = PoolVector2Array( 48.75, 52.25, 48.25, 67, 43.75, 79.25, 34.5, 78.75, 33, 65.25, 35.75, 52.5 )
 uv = PoolVector2Array( 48.75, 52.25, 48.25, 67, 43.75, 79.25, 34.5, 78.75, 33, 65.25, 35.75, 52.5 )
@@ -1018,7 +1026,7 @@ bones = [ NodePath("chest"), PoolRealArray( 0, 0, 0, 0, 0, 0 ), NodePath("chest/
 
 [node name="piedL" type="Polygon2D" parent="Polygons"]
 position = Vector2( -17.0401, -49.9261 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 skeleton = NodePath("../../Skeleton2D")
 polygon = PoolVector2Array( 6.25, 89.25, 25.75, 89.25, 25.75, 100.5, 4.75, 99.75 )
 uv = PoolVector2Array( 6.25, 89.25, 25.75, 89.25, 25.75, 100.5, 4.75, 99.75 )
@@ -1026,7 +1034,7 @@ bones = [ NodePath("chest"), PoolRealArray( 0, 0, 0, 0 ), NodePath("chest/head")
 
 [node name="molletL" type="Polygon2D" parent="Polygons"]
 position = Vector2( -14.8756, -46.0031 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 skeleton = NodePath("../../Skeleton2D")
 polygon = PoolVector2Array( 21.5, 89, 12, 89.5, 11.75, 70.25, 21.25, 70.25 )
 uv = PoolVector2Array( 21.5, 89, 12, 89.5, 11.75, 70.25, 21.25, 70.25 )
@@ -1034,7 +1042,7 @@ bones = [ NodePath("chest"), PoolRealArray( 0, 0, 0, 0 ), NodePath("chest/head")
 
 [node name="cuisseL" type="Polygon2D" parent="Polygons"]
 position = Vector2( -15.0288, -40.0178 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 skeleton = NodePath("../../Skeleton2D")
 polygon = PoolVector2Array( 11.5, 44.25, 24.25, 44.5, 24.75, 58, 21.5, 69.75, 12, 69.75, 10, 58.25 )
 uv = PoolVector2Array( 11.5, 44.25, 24.25, 44.5, 24.75, 58, 21.5, 69.75, 12, 69.75, 10, 58.25 )
@@ -1042,7 +1050,7 @@ bones = [ NodePath("chest"), PoolRealArray( 0, 0, 0, 0, 0, 0 ), NodePath("chest/
 
 [node name="body" type="Polygon2D" parent="Polygons"]
 position = Vector2( -73.1057, -57.1449 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 skeleton = NodePath("../../Skeleton2D")
 polygon = PoolVector2Array( 59, 8.5, 89.25, 9.25, 91.25, 45.5, 84.75, 42.5, 97, 72, 66.75, 71.25, 65.25, 58, 64.75, 37.25, 58.5, 30.25 )
 uv = PoolVector2Array( 59, 8.5, 89.25, 9.25, 91.25, 45.5, 84.75, 42.5, 97, 72, 66.75, 71.25, 65.25, 58, 64.75, 37.25, 58.5, 30.25 )
@@ -1050,7 +1058,7 @@ bones = [ NodePath("chest"), PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ), NodePat
 
 [node name="brasL" type="Polygon2D" parent="Polygons"]
 position = Vector2( -33.2078, -24.9018 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 skeleton = NodePath("../../Skeleton2D")
 polygon = PoolVector2Array( 30.75, 3.75, 40.75, 3.75, 42, 12.5, 40.75, 22.75, 30.25, 21.75 )
 uv = PoolVector2Array( 30.75, 3.75, 40.75, 3.75, 42, 12.5, 40.75, 22.75, 30.25, 21.75 )
@@ -1058,7 +1066,7 @@ bones = [ NodePath("chest"), PoolRealArray( 0, 0, 0, 0, 0 ), NodePath("chest/hea
 
 [node name="avant_brasL" type="Polygon2D" parent="Polygons"]
 position = Vector2( -33.0918, -28.9612 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 skeleton = NodePath("../../Skeleton2D")
 polygon = PoolVector2Array( 31.5, 41.5, 39, 41.75, 40.75, 29.75, 40, 22, 31.5, 22.5 )
 uv = PoolVector2Array( 31.5, 41.5, 39, 41.75, 40.75, 29.75, 40, 22, 31.5, 22.5 )
@@ -1066,7 +1074,7 @@ bones = [ NodePath("chest"), PoolRealArray( 0, 0, 0, 0, 0 ), NodePath("chest/hea
 
 [node name="mainL" type="Polygon2D" parent="Polygons"]
 position = Vector2( -33.1379, -31.7992 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 skeleton = NodePath("../../Skeleton2D")
 polygon = PoolVector2Array( 32.5, 42.25, 38.5, 42.25, 39.25, 52, 31.75, 52 )
 uv = PoolVector2Array( 32.5, 42.25, 38.5, 42.25, 39.25, 52, 31.75, 52 )
@@ -1075,7 +1083,7 @@ bones = [ NodePath("chest"), PoolRealArray( 0, 0, 0, 0 ), NodePath("chest/head")
 [node name="bob_dont_mofify" type="Sprite" parent="."]
 visible = false
 modulate = Color( 0.517647, 1, 0.419608, 0.415686 )
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -1083,11 +1091,13 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="bob_dont_mofify"]
 anims/Atk = SubResource( 2 )
 anims/Idle = SubResource( 3 )
-anims/walk = SubResource( 4 )
+anims/Walk = SubResource( 4 )
 
 [node name="Skeleton2D" type="Skeleton2D" parent="."]
+editor/display_folded = true
 
 [node name="chest" type="Bone2D" parent="Skeleton2D"]
+editor/display_folded = true
 position = Vector2( 2.57, 11.998 )
 rest = Transform2D( 1, 0, 0, 1, 2.57024, 9.63841 )
 
@@ -1159,3 +1169,23 @@ default_length = 8.0
 
 [node name="Position2D" type="Position2D" parent="."]
 position = Vector2( -36.338, -15.2564 )
+
+[node name="Health_wait" type="Timer" parent="."]
+one_shot = true
+
+[node name="Stamina_wait" type="Timer" parent="."]
+one_shot = true
+
+[node name="Health_regen" type="Timer" parent="."]
+
+[node name="Stamina_regen" type="Timer" parent="."]
+
+[node name="Attacks" type="Node" parent="."]
+script = ExtResource( 4 )
+Animation_Player = NodePath("../bob_dont_mofify/AnimationPlayer")
+light_attack = ExtResource( 5 )
+pos = NodePath("../Position2D")
+[connection signal="timeout" from="Health_wait" to="." method="_on_Health_wait_timeout"]
+[connection signal="timeout" from="Stamina_wait" to="." method="_on_Stamina_wait_timeout"]
+[connection signal="timeout" from="Health_regen" to="." method="_on_Health_regen_timeout"]
+[connection signal="timeout" from="Stamina_regen" to="." method="_on_Stamina_regen_timeout"]

@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Prefabs/Floor.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Camera.gd" type="Script" id=2]
-[ext_resource path="res://Prefabs/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Prefabs/bob.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/ui/fond.png" type="Texture" id=4]
 [ext_resource path="res://Assets/ui/progress.png" type="Texture" id=5]
 [ext_resource path="res://Assets/ui/progress_stamina.png" type="Texture" id=6]
@@ -33,17 +33,18 @@ process_mode = 0
 limit_smoothed = true
 smoothing_enabled = true
 script = ExtResource( 2 )
-player_1 = NodePath("../Player")
-player_2 = NodePath("../Player2")
+player_1 = NodePath("../Bob (King of Nudism)")
+player_2 = NodePath("../Bob (King of Nudism)2")
 
-[node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( -190, 183 )
+[node name="Bob (King of Nudism)" parent="." instance=ExtResource( 3 )]
+position = Vector2( -190, 171 )
+scale = Vector2( -1, 1 )
 playerOne = true
 HealthBar = NodePath("../CanvasLayer/Player_1_Info/HealthBar")
 StaminaBar = NodePath("../CanvasLayer/Player_1_Info/StaminaBar")
 
-[node name="Player2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 190, 183 )
+[node name="Bob (King of Nudism)2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 190, 171 )
 HealthBar = NodePath("../CanvasLayer/Player_2_Info/HealthBar")
 StaminaBar = NodePath("../CanvasLayer/Player_2_Info/StaminaBar")
 

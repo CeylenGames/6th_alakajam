@@ -28,6 +28,12 @@ export (NodePath) var StaminaBar
 onready var health_bar = get_node(HealthBar)
 onready var stamina_bar = get_node(StaminaBar)
 
+# Animations
+export (NodePath) var Animation_Player
+onready var Animator = get_node(Animation_Player)
+
+var is_moving = false
+
 func _ready():
 	if not playerOne:
 		actions = ["ui_left", "ui_right", "ui_up", "ui_down"]
@@ -43,20 +49,32 @@ func _physics_process(delta):
 		can_jump = true
 
 	if Input.is_action_pressed(actions[0]):
-		velocity.x = -Speed
+		if not $Attacks.is_attacking:
+			velocity.x = -Speed
+			is_moving = true
+		else:
+			velocity.x = 0
 	elif Input.is_action_pressed(actions[1]):
-		velocity.x = Speed
+		if not $Attacks.is_attacking:
+			velocity.x = Speed
+			is_moving = true
+		else:
+			velocity.x = 0
 	else:
 		velocity.x = 0
-	
+		is_moving = false
+
 	if Input.is_action_pressed(actions[3]):
 		can_jump = false
-		print("dodge")
+		print("block")
 	
+	# Jump
+	"""
 	if Input.is_action_just_pressed(actions[2]):
 		if can_jump:
 			velocity.y = -JumpForce
 			can_jump = false
+	"""
 	
 	move_and_slide(velocity, Vector2.UP)
 
@@ -65,6 +83,16 @@ func _process(delta):
 		take_damage(1)
 	if Input.is_action_just_pressed("test_n"):
 		use_stamina(1)
+	manage_animations()
+
+func manage_animations():
+	var current = Animator.current_animation
+	if is_moving:
+		if current == "Idle":
+			Animator.play("Walk")
+	else:
+		if not $Attacks.is_attacking:
+			Animator.play("Idle")
 
 func updateUi():
 	health_bar.value = (float(Health)/float(MaxHealth)) * health_bar.max_value
