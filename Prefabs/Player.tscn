@@ -22,3 +22,17 @@ shape = SubResource( 1 )
 
 [node name="Attacks" type="Node" parent="."]
 script = ExtResource( 3 )
+
+[node name="Health_wait" type="Timer" parent="."]
+one_shot = true
+
+[node name="Stamina_wait" type="Timer" parent="."]
+one_shot = true
+
+[node name="Health_regen" type="Timer" parent="."]
+
+[node name="Stamina_regen" type="Timer" parent="."]
+[connection signal="timeout" from="Health_wait" to="." method="_on_Health_wait_timeout"]
+[connection signal="timeout" from="Stamina_wait" to="." method="_on_Stamina_wait_timeout"]
+[connection signal="timeout" from="Health_regen" to="." method="_on_Health_regen_timeout"]
+[connection signal="timeout" from="Stamina_regen" to="." method="_on_Stamina_regen_timeout"]
