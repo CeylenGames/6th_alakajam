@@ -10,12 +10,12 @@
 [ext_resource path="res://Scripts/TimerText.gd" type="Script" id=8]
 [ext_resource path="res://Prefabs/Wall.tscn" type="PackedScene" id=9]
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=1]
 size = 30
 use_filter = true
 font_data = ExtResource( 7 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=2]
 size = 70
 use_filter = true
 font_data = ExtResource( 7 )
@@ -79,7 +79,7 @@ nine_patch_stretch = true
 margin_left = 100.0
 margin_right = 346.0
 margin_bottom = 36.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 1 )
 text = "Player One Name"
 align = 1
 valign = 2
@@ -119,7 +119,7 @@ margin_left = -316.0
 margin_top = 1.0
 margin_right = -70.0
 margin_bottom = 37.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 1 )
 text = "Player Two Name"
 align = 1
 valign = 2
@@ -131,7 +131,7 @@ anchor_right = 0.5
 margin_left = -72.5
 margin_right = 72.5
 margin_bottom = 105.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 2 )
 text = "100"
 align = 1
 valign = 1
@@ -149,8 +149,8 @@ position = Vector2( -500, 20 )
 position = Vector2( 500, 20 )
 
 [node name="Wall3" parent="." instance=ExtResource( 9 )]
-position = Vector2( -120, 20 )
+position = Vector2( -90, 20 )
 
 [node name="Wall4" parent="." instance=ExtResource( 9 )]
-position = Vector2( 120, 20 )
+position = Vector2( 90, 20 )
 [connection signal="timeout" from="CanvasLayer/TimerText/Timer" to="CanvasLayer/TimerText" method="_on_Timer_timeout"]
