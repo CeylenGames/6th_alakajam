@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 export (bool) var playerOne
 
+# Physics
 var can_jump = false
 
 export (float) var gravity = 400
@@ -12,7 +13,16 @@ var velocity = Vector2(0, 0)
 
 export (Array, float) var limits
 
+#Inputs
 var actions = Array()
+
+# Gameplay
+
+var MaxHealth = 10
+var MaxStamina = 10
+
+export (NodePath) var HealthBar
+export (NodePath) var StaminaBar
 
 func _ready():
 	if not playerOne:

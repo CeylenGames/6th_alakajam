@@ -1,7 +1,27 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Prefabs/Floor.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Prefabs/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/fonts/Roboto/Roboto-Regular.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.0235294, 1, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.164706, 0.164706, 0.164706, 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.364706, 0.313726, 1, 1 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 30
+use_filter = true
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 70
+use_filter = true
+font_data = ExtResource( 3 )
 
 [node name="World" type="Node"]
 
@@ -10,7 +30,7 @@ current = true
 zoom = Vector2( 0.5, 0.5 )
 
 [node name="Floor" parent="." instance=ExtResource( 1 )]
-position = Vector2( 0, 170 )
+position = Vector2( -0.358486, 170 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( -219.553, -57.5564 )
@@ -21,3 +41,91 @@ limits = [ -235.0, -40.0 ]
 [node name="Player2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 218.408, -56.8636 )
 limits = [ 40.0, 235.0 ]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Player_1_Info" type="Control" parent="CanvasLayer"]
+editor/display_folded = true
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer/Player_1_Info"]
+margin_left = 17.0
+margin_top = 35.0
+margin_right = 437.0
+margin_bottom = 58.0
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+value = 100.0
+percent_visible = false
+
+[node name="StaminaBar" type="ProgressBar" parent="CanvasLayer/Player_1_Info"]
+margin_left = 17.0
+margin_top = 58.0
+margin_right = 417.0
+margin_bottom = 72.0
+custom_styles/fg = SubResource( 3 )
+custom_styles/bg = SubResource( 2 )
+value = 100.0
+percent_visible = false
+
+[node name="Label" type="Label" parent="CanvasLayer/Player_1_Info"]
+margin_left = 18.0
+margin_top = 1.0
+margin_right = 264.0
+margin_bottom = 37.0
+custom_fonts/font = SubResource( 4 )
+text = "Player One Name"
+align = 1
+valign = 2
+autowrap = true
+
+[node name="Player_2_Info" type="Control" parent="CanvasLayer"]
+editor/display_folded = true
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -40.0
+margin_bottom = 40.0
+
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer/Player_2_Info"]
+margin_left = -394.0
+margin_top = 35.0
+margin_right = 26.0
+margin_bottom = 58.0
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+value = 100.0
+percent_visible = false
+
+[node name="StaminaBar" type="ProgressBar" parent="CanvasLayer/Player_2_Info"]
+margin_left = -374.0
+margin_top = 58.0
+margin_right = 26.0
+margin_bottom = 72.0
+custom_styles/fg = SubResource( 3 )
+custom_styles/bg = SubResource( 2 )
+value = 100.0
+percent_visible = false
+
+[node name="Label" type="Label" parent="CanvasLayer/Player_2_Info"]
+margin_left = -223.0
+margin_top = 1.0
+margin_right = 23.0
+margin_bottom = 37.0
+custom_fonts/font = SubResource( 4 )
+text = "Player Two Name"
+align = 1
+valign = 2
+autowrap = true
+
+[node name="Timer" type="Label" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -57.0
+margin_right = 57.0
+margin_bottom = 105.0
+custom_fonts/font = SubResource( 5 )
+text = "0"
+align = 1
+valign = 1
+autowrap = true
