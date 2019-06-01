@@ -3,11 +3,7 @@ extends KinematicBody2D
 export (bool) var playerOne
 
 # Physics
-var can_jump = false
-
-export (float) var gravity = 400
 export (float) var Speed = 150
-export (float) var JumpForce = 300
 
 var velocity = Vector2(0, 0)
 
@@ -28,6 +24,9 @@ export (NodePath) var StaminaBar
 onready var health_bar = get_node(HealthBar)
 onready var stamina_bar = get_node(StaminaBar)
 
+export (Array, Resource) var shields
+var is_blocking = false
+
 # Animations
 export (NodePath) var Animation_Player
 onready var Animator = get_node(Animation_Player)
@@ -43,11 +42,6 @@ func _ready():
 	updateUi()
 
 func _physics_process(delta):
-	if not is_on_floor():
-		velocity.y += gravity * delta
-	else:
-		can_jump = true
-
 	if Input.is_action_pressed(actions[0]):
 		if not $Attacks.is_attacking:
 			velocity.x = -Speed
@@ -65,24 +59,23 @@ func _physics_process(delta):
 		is_moving = false
 
 	if Input.is_action_pressed(actions[3]):
-		can_jump = false
-		print("block")
-	
-	# Jump
-	"""
-	if Input.is_action_just_pressed(actions[2]):
-		if can_jump:
-			velocity.y = -JumpForce
-			can_jump = false
-	"""
+		if Stamina != 0:
+			is_blocking = true
+			$Shield.visible = true
+			$Shield.texture = shields[3-Stamina]
+			$Stamina_wait.stop()
+			$Stamina_regen.stop()
+	if Input.is_action_just_released(actions[3]):
+		$Shield.visible = false
+		is_blocking = false
+		if Stamina != MaxStamina:
+			$Stamina_wait.start()
 	
 	move_and_slide(velocity, Vector2.UP)
 
 func _process(delta):
 	if Input.is_action_just_pressed("test_b"):
 		take_damage(1)
-	if Input.is_action_just_pressed("test_n"):
-		use_stamina(1)
 	manage_animations()
 
 func manage_animations():
@@ -102,21 +95,18 @@ func die():
 	get_node("/root/World/Master").win(playerOne)
 
 func take_damage(amount):
-	var result = Health - amount
-	if result <= 0:
-		result = 0
-		die()
-	Health = result
+	if not is_blocking:
+		var result = Health - amount
+		if result <= 0:
+			result = 0
+			die()
+		Health = result
+	else:
+		Stamina -= 1
+		if Stamina <= 0:
+			Stamina = 0
+			$Shield.visible = false
 	updateUi()
-
-func use_stamina(amount):
-	$Stamina_regen.stop()
-	var result = Stamina - amount
-	if result <= 0:
-		result = 0
-	Stamina = result
-	updateUi()
-	$Stamina_wait.start()
 
 # Timers
 func _on_Stamina_wait_timeout():
