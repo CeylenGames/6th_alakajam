@@ -17,8 +17,13 @@ func _ready():
 		actions = ["light_attack_2", "heavy_attack_2"]
 	
 	Animator.play("Idle")
-
+	
 func _process(delta):
+	manage_input()
+
+func manage_input():
+	if owner.is_blocking:
+		return
 	if Input.is_action_just_pressed(actions[0]):
 		is_attacking = true
 		Animator.play("Atk")
