@@ -18,11 +18,8 @@ var MaxStamina = 3
 var Health = MaxHealth
 var Stamina = MaxStamina
 
-export (NodePath) var HealthBar
-export (NodePath) var StaminaBar
-
-onready var health_bar = get_node(HealthBar)
-onready var stamina_bar = get_node(StaminaBar)
+var health_bar
+var stamina_bar
 
 export (Array, Resource) var shields
 var is_blocking = false
@@ -32,6 +29,7 @@ export (NodePath) var Animation_Player
 onready var Animator = get_node(Animation_Player)
 
 var is_moving = false
+var light = null
 
 func _ready():
 	if not playerOne:
@@ -41,6 +39,7 @@ func _ready():
 	
 	updateUi()
 
+# warning-ignore:unused_argument
 func _physics_process(delta):
 	if Input.is_action_pressed(actions[0]):
 		if not $Attacks.is_attacking:
@@ -58,24 +57,37 @@ func _physics_process(delta):
 		velocity.x = 0
 		is_moving = false
 
-	if Input.is_action_pressed(actions[3]):
+	if Input.is_action_pressed(actions[3]): # Block
 		if Stamina != 0:
-			is_blocking = true
-			$Shield.visible = true
-			$Shield.texture = shields[3-Stamina]
-			$Stamina_wait.stop()
-			$Stamina_regen.stop()
+			set_shield()
+	if Input.is_action_just_pressed(actions[3]): # Reverse
+		if light != null:
+			light.flip_h = not light.flip_h
+			light.Speed = -light.Speed
+			light = null
+
 	if Input.is_action_just_released(actions[3]):
 		$Shield.visible = false
 		is_blocking = false
 		if Stamina != MaxStamina:
 			$Stamina_wait.start()
 	
+# warning-ignore:return_value_discarded
 	move_and_slide(velocity, Vector2.UP)
 
+func set_shield():
+	is_blocking = true
+	$Shield.visible = true
+	$Shield.texture = shields[3-Stamina]
+	$Stamina_wait.stop()
+	$Stamina_regen.stop()
+
+# warning-ignore:unused_argument
 func _process(delta):
+	"""
 	if Input.is_action_just_pressed("test_b"):
 		take_damage(1)
+	"""
 	manage_animations()
 
 func manage_animations():
@@ -92,6 +104,7 @@ func updateUi():
 	stamina_bar.value = (float(Stamina)/float(MaxStamina)) * stamina_bar.max_value
 	
 func die():
+	Animator.play("Death")
 	get_node("/root/World/Master").win(playerOne)
 
 func take_damage(amount):
@@ -118,3 +131,6 @@ func _on_Stamina_regen_timeout():
 	if Stamina == MaxStamina:
 		$Stamina_regen.stop()
 
+func _on_Area2D_area_entered(area):
+	if area.owner.is_in_group("light_attack"):
+		light = area.owner

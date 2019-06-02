@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Prefabs/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/shield/shield_1.png" type="Texture" id=2]
@@ -7,7 +7,8 @@
 [ext_resource path="res://Assets/Garor/Garor_parts.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Garor/Garor.png" type="Texture" id=6]
 [ext_resource path="res://Scripts/Attacks.gd" type="Script" id=7]
-[ext_resource path="res://Prefabs/fireball.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Prefabs/Light_Arrow.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Prefabs/Light_Circle.tscn" type="PackedScene" id=9]
 
 [sub_resource type="CapsuleShape2D" id=1]
 height = 68.4652
@@ -644,7 +645,7 @@ tracks/25/keys = {
 "values": [ 208.968, 166.366 ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=4]
 resource_name = "Heavy"
 length = 1.15
 step = 0.05
@@ -961,7 +962,7 @@ tracks/25/keys = {
 "values": [ 208.968 ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("../Skeleton2D/chest:position")
@@ -1276,7 +1277,7 @@ tracks/25/keys = {
 "values": [ 208.968 ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=6]
 length = 1.6
 loop = true
 step = 0.2
@@ -1593,6 +1594,9 @@ tracks/25/keys = {
 "values": [ 192.466, 165.898, 165.898, 183.627, 175.224, 178.343, 178.343 ]
 }
 
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 10, 15 )
+
 [node name="Garor" type="KinematicBody2D" groups=[
 "Player",
 ]]
@@ -1733,11 +1737,12 @@ __meta__ = {
 autoplay = "Idle"
 anims/Atk = SubResource( 2 )
 anims/Death = SubResource( 3 )
-anims/Heavy = SubResource( 6 )
-anims/Idle = SubResource( 4 )
-anims/Walk = SubResource( 5 )
+anims/Heavy = SubResource( 4 )
+anims/Idle = SubResource( 5 )
+anims/Walk = SubResource( 6 )
 
 [node name="Skeleton2D" type="Skeleton2D" parent="."]
+editor/display_folded = true
 
 [node name="chest" type="Bone2D" parent="Skeleton2D"]
 position = Vector2( 2.57, 11.998 )
@@ -1822,10 +1827,18 @@ one_shot = true
 script = ExtResource( 7 )
 Animation_Player = NodePath("../../Garor/bob_dont_mofify/AnimationPlayer")
 light_attack = ExtResource( 8 )
+heavy_attack = ExtResource( 9 )
 pos = NodePath("../../Garor/Position2D")
 
 [node name="Shield" type="Sprite" parent="."]
 visible = false
 texture = ExtResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( -20, -15 )
+shape = SubResource( 7 )
 [connection signal="timeout" from="Stamina_wait" to="." method="_on_Stamina_wait_timeout"]
 [connection signal="timeout" from="Stamina_regen" to="." method="_on_Stamina_regen_timeout"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]

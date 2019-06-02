@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Scripts/ChampSelect.gd" type="Script" id=1]
 [ext_resource path="res://Assets/fonts/Roboto/Roboto-Black.ttf" type="DynamicFontData" id=2]
@@ -7,7 +7,7 @@
 [ext_resource path="res://Assets/Bob/Icon-bob.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Garor/Garor_icon.png" type="Texture" id=6]
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=1]
 resource_name = "blink_1"
 loop = true
 tracks/0/type = "value"
@@ -23,7 +23,7 @@ tracks/0/keys = {
 "values": [ Color( 0.788235, 0.0705882, 0.0705882, 1 ), Color( 0.788235, 0.0705882, 0.0705882, 0 ), Color( 0.788235, 0.0705882, 0.0705882, 1 ) ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=2]
 resource_name = "blink_2"
 loop = true
 tracks/0/type = "value"
@@ -39,7 +39,7 @@ tracks/0/keys = {
 "values": [ Color( 0.247059, 0.164706, 0.705882, 1 ), Color( 0.247059, 0.164706, 0.705882, 0 ), Color( 0.247059, 0.164706, 0.705882, 1 ) ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=3]
 resource_name = "blink_both"
 loop = true
 tracks/0/type = "value"
@@ -55,7 +55,7 @@ tracks/0/keys = {
 "values": [ Color( 0.247059, 0.164706, 0.705882, 1 ), Color( 0.788235, 0.0705882, 0.0705882, 1 ), Color( 0.247059, 0.164706, 0.705882, 1 ) ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=4]
 resource_name = "idle"
 loop = true
 tracks/0/type = "value"
@@ -71,7 +71,7 @@ tracks/0/keys = {
 "values": [ Color( 0.247059, 0.164706, 0.705882, 0 ), Color( 0.247059, 0.164706, 0.705882, 0 ) ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=5]
 resource_name = "blink_1"
 loop = true
 tracks/0/type = "value"
@@ -87,7 +87,7 @@ tracks/0/keys = {
 "values": [ Color( 0.788235, 0.0705882, 0.0705882, 1 ), Color( 0.788235, 0.0705882, 0.0705882, 0 ), Color( 0.788235, 0.0705882, 0.0705882, 1 ) ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=6]
 resource_name = "blink_2"
 loop = true
 tracks/0/type = "value"
@@ -103,7 +103,7 @@ tracks/0/keys = {
 "values": [ Color( 0.247059, 0.164706, 0.705882, 1 ), Color( 0.788235, 0.0705882, 0.0705882, 0 ), Color( 0.247059, 0.164706, 0.705882, 1 ) ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=7]
 resource_name = "blink_both"
 loop = true
 tracks/0/type = "value"
@@ -119,7 +119,7 @@ tracks/0/keys = {
 "values": [ Color( 0.247059, 0.164706, 0.705882, 1 ), Color( 0.788235, 0.0705882, 0.0705882, 1 ), Color( 0.247059, 0.164706, 0.705882, 1 ) ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=8]
 resource_name = "idle"
 loop = true
 tracks/0/type = "value"
@@ -135,48 +135,54 @@ tracks/0/keys = {
 "values": [ Color( 0.247059, 0.164706, 0.705882, 0 ), Color( 0.247059, 0.164706, 0.705882, 0 ) ]
 }
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=9]
 size = 48
 use_filter = true
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=10]
 size = 24
 use_filter = true
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=11]
 size = 50
 use_filter = true
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=12]
 size = 36
 use_filter = true
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=13]
 size = 30
 font_data = ExtResource( 2 )
 
+[sub_resource type="DynamicFont" id=14]
+size = 30
+use_filter = true
+font_data = ExtResource( 2 )
+
 [node name="Control" type="CanvasLayer"]
+editor/display_folded = true
 script = ExtResource( 1 )
-actions_p1 = [ "ui_left", "ui_right" ]
-actions_p2 = [ "ui_left_2", "ui_right_2" ]
+actions_p1 = [ "ui_left_2", "ui_right_2", "light_attack_2", "heavy_attack_2" ]
+actions_p2 = [ "ui_left", "ui_right", "light_attack", "heavy_attack" ]
 anim_1 = NodePath("AnimationPlayer1")
 anim_2 = NodePath("AnimationPlayer2")
 
 [node name="AnimationPlayer1" type="AnimationPlayer" parent="."]
-anims/blink_1 = SubResource( 6 )
-anims/blink_2 = SubResource( 7 )
-anims/blink_both = SubResource( 8 )
-anims/idle = SubResource( 12 )
+anims/blink_1 = SubResource( 1 )
+anims/blink_2 = SubResource( 2 )
+anims/blink_both = SubResource( 3 )
+anims/idle = SubResource( 4 )
 
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
-anims/blink_1 = SubResource( 9 )
-anims/blink_2 = SubResource( 10 )
-anims/blink_both = SubResource( 11 )
-anims/idle = SubResource( 13 )
+anims/blink_1 = SubResource( 5 )
+anims/blink_2 = SubResource( 6 )
+anims/blink_both = SubResource( 7 )
+anims/idle = SubResource( 8 )
 
 [node name="background" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -200,7 +206,7 @@ margin_left = -229.0
 margin_top = -28.5
 margin_right = 229.0
 margin_bottom = 28.5
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 9 )
 text = "- Select a Character -"
 align = 1
 valign = 1
@@ -220,12 +226,11 @@ anchor_bottom = 1.0
 margin_left = -229.0
 margin_top = -47.0
 margin_right = 229.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 10 )
 text = "Bob"
 align = 1
 
 [node name="P1" type="ColorRect" parent="."]
-editor/display_folded = true
 margin_right = 80.0
 margin_bottom = 80.0
 color = Color( 0.278431, 0.278431, 0.278431, 1 )
@@ -239,13 +244,12 @@ margin_left = -31.0
 margin_top = -30.0
 margin_right = 31.0
 margin_bottom = 30.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 11 )
 text = "P1"
 align = 1
 valign = 1
 
 [node name="P1_name" type="ColorRect" parent="P1"]
-editor/display_folded = true
 anchor_left = 1.0
 anchor_right = 1.0
 margin_right = 313.0
@@ -261,10 +265,10 @@ margin_left = -153.0
 margin_top = -27.5
 margin_right = 153.0
 margin_bottom = 27.5
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 12 )
 align = 1
 max_length = 14
-placeholder_text = "Player 1"
+placeholder_text = "Enter Name"
 
 [node name="------------------" type="Node" parent="."]
 
@@ -285,7 +289,7 @@ margin_left = -229.0
 margin_top = -28.5
 margin_right = 229.0
 margin_bottom = 28.5
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 9 )
 text = "- Select a Character -"
 align = 1
 valign = 1
@@ -309,7 +313,7 @@ anchor_bottom = 1.0
 margin_left = -229.0
 margin_top = -47.0
 margin_right = 229.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 10 )
 text = "Bob"
 align = 1
 
@@ -330,13 +334,12 @@ margin_left = -31.0
 margin_top = -30.0
 margin_right = 31.0
 margin_bottom = 30.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 11 )
 text = "P2"
 align = 1
 valign = 1
 
 [node name="P2_name" type="ColorRect" parent="P2"]
-editor/display_folded = true
 margin_left = -313.0
 margin_bottom = 63.0
 color = Color( 0.278431, 0.278431, 0.278431, 1 )
@@ -350,10 +353,10 @@ margin_left = -153.0
 margin_top = -27.5
 margin_right = 153.0
 margin_bottom = 27.5
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 12 )
 align = 1
 max_length = 14
-placeholder_text = "Player 2"
+placeholder_text = "Enter Name"
 
 [node name="-----------------" type="Node" parent="."]
 
@@ -390,7 +393,7 @@ margin_left = 6.00162
 margin_top = -21.0
 margin_right = 85.0016
 margin_bottom = 21.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 13 )
 text = "Back"
 
 [node name="Next_Button" type="Button" parent="Controls"]
@@ -402,13 +405,28 @@ margin_left = -85.0015
 margin_top = -21.0
 margin_right = -6.00146
 margin_bottom = 21.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 13 )
 text = "Next"
+
+[node name="Info" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -458.0
+margin_top = -46.5
+margin_right = 452.0
+margin_bottom = -4.5
+custom_fonts/font = SubResource( 14 )
+text = "Select : Light Attack, Deselect : Heavy Attack"
+align = 1
+valign = 1
 
 [node name="----------------" type="Node" parent="."]
 
 [node name="Bob" type="Sprite" parent="."]
-position = Vector2( 330, 590 )
+editor/display_folded = true
+position = Vector2( 420, 590 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 __meta__ = {
@@ -427,7 +445,8 @@ texture = ExtResource( 5 )
 flip_h = true
 
 [node name="Garor" type="Sprite" parent="."]
-position = Vector2( 766, 590 )
+editor/display_folded = true
+position = Vector2( 1100, 590 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 __meta__ = {

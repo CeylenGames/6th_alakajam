@@ -1,34 +1,36 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Scripts/Master.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Input.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Prefabs/Floor.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scripts/Camera.gd" type="Script" id=4]
-[ext_resource path="res://Prefabs/bob.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Assets/BG/bg_4.png" type="Texture" id=6]
-[ext_resource path="res://Assets/BG/bg_3.png" type="Texture" id=7]
-[ext_resource path="res://Assets/BG/bg_2.png" type="Texture" id=8]
-[ext_resource path="res://Assets/BG/bg_1.png" type="Texture" id=9]
-[ext_resource path="res://Assets/ui/empty_bar.png" type="Texture" id=10]
-[ext_resource path="res://Assets/ui/life_bar.png" type="Texture" id=11]
-[ext_resource path="res://Assets/ui/Stamina_bar.png" type="Texture" id=12]
-[ext_resource path="res://Assets/fonts/Retro/retro.ttf" type="DynamicFontData" id=13]
-[ext_resource path="res://Assets/icon.png" type="Texture" id=14]
-[ext_resource path="res://Assets/Bob/Icon-bob.png" type="Texture" id=15]
-[ext_resource path="res://Assets/fonts/Roboto/Roboto-Regular.ttf" type="DynamicFontData" id=16]
-[ext_resource path="res://Scripts/TimerText.gd" type="Script" id=17]
-[ext_resource path="res://Assets/body_sample.png" type="Texture" id=18]
-[ext_resource path="res://Prefabs/Wall.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Prefabs/bob.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Prefabs/Garor.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Bob/Icon-bob.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Garor/Garor_icon.png" type="Texture" id=6]
+[ext_resource path="res://Prefabs/Floor.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scripts/Camera.gd" type="Script" id=8]
+[ext_resource path="res://Assets/BG/bg_4.png" type="Texture" id=9]
+[ext_resource path="res://Assets/BG/bg_3.png" type="Texture" id=10]
+[ext_resource path="res://Assets/BG/bg_2.png" type="Texture" id=11]
+[ext_resource path="res://Assets/BG/bg_1.png" type="Texture" id=12]
+[ext_resource path="res://Assets/ui/empty_bar.png" type="Texture" id=13]
+[ext_resource path="res://Assets/ui/life_bar.png" type="Texture" id=14]
+[ext_resource path="res://Assets/ui/Stamina_bar.png" type="Texture" id=15]
+[ext_resource path="res://Assets/fonts/Retro/retro.ttf" type="DynamicFontData" id=16]
+[ext_resource path="res://Assets/icon.png" type="Texture" id=17]
+[ext_resource path="res://Assets/fonts/Roboto/Roboto-Regular.ttf" type="DynamicFontData" id=18]
+[ext_resource path="res://Scripts/TimerText.gd" type="Script" id=19]
+[ext_resource path="res://Assets/body_sample.png" type="Texture" id=20]
+[ext_resource path="res://Prefabs/Wall.tscn" type="PackedScene" id=21]
 
 [sub_resource type="DynamicFont" id=1]
-size = 40
+size = 55
 use_filter = true
-font_data = ExtResource( 13 )
+font_data = ExtResource( 16 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 70
 use_filter = true
-font_data = ExtResource( 16 )
+font_data = ExtResource( 18 )
 
 [sub_resource type="Animation" id=3]
 resource_name = "fade_in"
@@ -65,16 +67,16 @@ tracks/0/keys = {
 [sub_resource type="DynamicFont" id=5]
 size = 80
 use_filter = true
-font_data = ExtResource( 13 )
+font_data = ExtResource( 16 )
 
 [sub_resource type="DynamicFont" id=6]
 size = 70
 use_filter = true
-font_data = ExtResource( 13 )
+font_data = ExtResource( 16 )
 
 [sub_resource type="DynamicFont" id=7]
 size = 70
-font_data = ExtResource( 13 )
+font_data = ExtResource( 16 )
 
 [node name="World" type="Node"]
 
@@ -83,11 +85,18 @@ pause_mode = 2
 script = ExtResource( 1 )
 menu_node = NodePath("../CanvasLayer/WinMenu")
 buttons_node = NodePath("../CanvasLayer/Menu")
+ControlScene = ExtResource( 2 )
 p1_win = NodePath("../CanvasLayer/P1Wins")
 p2_win = NodePath("../CanvasLayer/P2Wins")
-ControlScene = ExtResource( 2 )
+players = [ ExtResource( 3 ), ExtResource( 4 ) ]
+Healthbars = [ NodePath("../CanvasLayer/Player_1_Info/HealthBar"), NodePath("../CanvasLayer/Player_2_Info/HealthBar") ]
+Staminabars = [ NodePath("../CanvasLayer/Player_1_Info/StaminaBar"), NodePath("../CanvasLayer/Player_2_Info/StaminaBar") ]
+camera_path = NodePath("../Camera2D")
+icons = [ ExtResource( 5 ), ExtResource( 6 ) ]
+icon_paths = [ NodePath("../CanvasLayer/Player_1_Info/fond_icon/icon"), NodePath("../CanvasLayer/Player_2_Info/fond_icon2/icon") ]
+name_labels = [ NodePath("../CanvasLayer/Player_1_Info/Label"), NodePath("../CanvasLayer/Player_2_Info/Label") ]
 
-[node name="Floor" parent="." instance=ExtResource( 3 )]
+[node name="Floor" parent="." instance=ExtResource( 7 )]
 position = Vector2( 0, 400 )
 scale = Vector2( 1.6, 1.6 )
 
@@ -97,21 +106,13 @@ current = true
 process_mode = 0
 limit_smoothed = true
 smoothing_enabled = true
-script = ExtResource( 4 )
-player_1 = NodePath("../Bob (King of Nudism)")
-player_2 = NodePath("../Bob (King of Nudism)2")
+script = ExtResource( 8 )
 
-[node name="Bob (King of Nudism)" parent="." instance=ExtResource( 5 )]
+[node name="Player1" type="Position2D" parent="."]
 position = Vector2( -190, 171 )
-scale = Vector2( -1, 1 )
-playerOne = true
-HealthBar = NodePath("../CanvasLayer/Player_1_Info/HealthBar")
-StaminaBar = NodePath("../CanvasLayer/Player_1_Info/StaminaBar")
 
-[node name="Bob (King of Nudism)2" parent="." instance=ExtResource( 5 )]
+[node name="Player2" type="Position2D" parent="."]
 position = Vector2( 190, 171 )
-HealthBar = NodePath("../CanvasLayer/Player_2_Info/HealthBar")
-StaminaBar = NodePath("../CanvasLayer/Player_2_Info/StaminaBar")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 editor/display_folded = true
@@ -125,7 +126,7 @@ motion_scale = Vector2( 1.6, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_scale = Vector2( 2, 1 )
-texture = ExtResource( 6 )
+texture = ExtResource( 9 )
 stretch_mode = 5
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -137,7 +138,7 @@ motion_scale = Vector2( 1.4, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_scale = Vector2( 2, 1 )
-texture = ExtResource( 7 )
+texture = ExtResource( 10 )
 stretch_mode = 5
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -149,7 +150,7 @@ motion_scale = Vector2( 1.2, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_scale = Vector2( 2, 1 )
-texture = ExtResource( 8 )
+texture = ExtResource( 11 )
 stretch_mode = 5
 
 [node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -160,7 +161,7 @@ scale = Vector2( 0.4, 0.4 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_scale = Vector2( 2, 1 )
-texture = ExtResource( 9 )
+texture = ExtResource( 12 )
 stretch_mode = 5
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -178,8 +179,8 @@ margin_top = 37.0
 margin_right = 680.0
 margin_bottom = 74.0
 value = 100.0
-texture_under = ExtResource( 10 )
-texture_progress = ExtResource( 11 )
+texture_under = ExtResource( 13 )
+texture_progress = ExtResource( 14 )
 nine_patch_stretch = true
 
 [node name="StaminaBar" type="TextureProgress" parent="CanvasLayer/Player_1_Info"]
@@ -188,18 +189,18 @@ margin_top = 74.0
 margin_right = 630.0
 margin_bottom = 96.0
 value = 100.0
-texture_under = ExtResource( 10 )
-texture_progress = ExtResource( 12 )
+texture_under = ExtResource( 13 )
+texture_progress = ExtResource( 15 )
 nine_patch_stretch = true
 
 [node name="Label" type="Label" parent="CanvasLayer/Player_1_Info"]
-margin_left = 100.0
-margin_right = 346.0
-margin_bottom = 36.0
+margin_left = 105.0
+margin_top = -8.0
+margin_right = 440.0
+margin_bottom = 41.0
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Player One Name"
-align = 1
 valign = 2
 autowrap = true
 
@@ -208,12 +209,12 @@ margin_left = -4.0
 margin_top = -4.0
 margin_right = 96.0
 margin_bottom = 96.0
-texture = ExtResource( 14 )
+texture = ExtResource( 17 )
 
 [node name="icon" type="Sprite" parent="CanvasLayer/Player_1_Info/fond_icon"]
 position = Vector2( 50.1467, 50.1467 )
 scale = Vector2( 2.53686, 2.55675 )
-texture = ExtResource( 15 )
+texture = ExtResource( 5 )
 flip_h = true
 
 [node name="Player_2_Info" type="Control" parent="CanvasLayer"]
@@ -230,8 +231,8 @@ margin_top = 35.0
 margin_right = -70.0
 margin_bottom = 70.0
 value = 100.0
-texture_under = ExtResource( 10 )
-texture_progress = ExtResource( 11 )
+texture_under = ExtResource( 13 )
+texture_progress = ExtResource( 14 )
 fill_mode = 1
 nine_patch_stretch = true
 
@@ -241,20 +242,20 @@ margin_top = 70.0
 margin_right = -70.0
 margin_bottom = 92.0
 value = 100.0
-texture_under = ExtResource( 10 )
-texture_progress = ExtResource( 12 )
+texture_under = ExtResource( 13 )
+texture_progress = ExtResource( 15 )
 fill_mode = 1
 nine_patch_stretch = true
 
 [node name="Label" type="Label" parent="CanvasLayer/Player_2_Info"]
-margin_left = -316.0
-margin_top = 1.0
-margin_right = -70.0
-margin_bottom = 37.0
+margin_left = -461.0
+margin_top = -11.0
+margin_right = -76.0
+margin_bottom = 38.0
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Player Two Name"
-align = 1
+align = 2
 valign = 2
 autowrap = true
 
@@ -263,12 +264,12 @@ margin_left = -64.0
 margin_top = -8.0
 margin_right = 36.0
 margin_bottom = 92.0
-texture = ExtResource( 14 )
+texture = ExtResource( 17 )
 
 [node name="icon" type="Sprite" parent="CanvasLayer/Player_2_Info/fond_icon2"]
 position = Vector2( 50.0665, 49.8093 )
 scale = Vector2( 2.53959, 2.55 )
-texture = ExtResource( 15 )
+texture = ExtResource( 5 )
 
 [node name="TimerText" type="Label" parent="CanvasLayer"]
 editor/display_folded = true
@@ -283,7 +284,7 @@ text = "100"
 align = 1
 valign = 1
 clip_text = true
-script = ExtResource( 17 )
+script = ExtResource( 19 )
 
 [node name="Timer" type="Timer" parent="CanvasLayer/TimerText"]
 process_mode = 0
@@ -294,7 +295,9 @@ editor/display_folded = true
 modulate = Color( 0, 0, 0, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 18 )
+margin_left = -0.568726
+margin_right = -0.568726
+texture = ExtResource( 20 )
 expand = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/WinMenu"]
@@ -370,16 +373,16 @@ margin_bottom = 31.5
 custom_fonts/font = SubResource( 7 )
 text = "Player Two Wins !"
 
-[node name="Wall" parent="." instance=ExtResource( 19 )]
+[node name="Wall" parent="." instance=ExtResource( 21 )]
 position = Vector2( -500, 20 )
 
-[node name="Wall2" parent="." instance=ExtResource( 19 )]
+[node name="Wall2" parent="." instance=ExtResource( 21 )]
 position = Vector2( 500, 20 )
 
-[node name="Wall3" parent="." instance=ExtResource( 19 )]
+[node name="Wall3" parent="." instance=ExtResource( 21 )]
 position = Vector2( -90, 20 )
 
-[node name="Wall4" parent="." instance=ExtResource( 19 )]
+[node name="Wall4" parent="." instance=ExtResource( 21 )]
 position = Vector2( 90, 20 )
 [connection signal="timeout" from="CanvasLayer/TimerText/Timer" to="CanvasLayer/TimerText" method="_on_Timer_timeout"]
 [connection signal="button_up" from="CanvasLayer/Menu/ResumeButton" to="Master" method="_on_ResumeButton_button_up"]

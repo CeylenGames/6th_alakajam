@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Prefabs/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/shield/shield_1.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Assets/Bob/bob.png" type="Texture" id=6]
 [ext_resource path="res://Scripts/Attacks.gd" type="Script" id=7]
 [ext_resource path="res://Prefabs/fireball.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Prefabs/Hache.tscn" type="PackedScene" id=9]
 
 [sub_resource type="CapsuleShape2D" id=1]
 height = 68.4652
@@ -1593,6 +1594,8 @@ tracks/25/keys = {
 "values": [ 192.466, 165.898, 165.898, 183.627, 175.224, 178.343, 178.343 ]
 }
 
+[sub_resource type="RectangleShape2D" id=7]
+
 [node name="Bob (King of Nudism)" type="KinematicBody2D" groups=[
 "Player",
 ]]
@@ -1716,7 +1719,6 @@ uv = PoolVector2Array( 32.5, 42.25, 38.5, 42.25, 39.25, 52, 31.75, 52 )
 bones = [ NodePath("chest"), PoolRealArray( 0, 0, 0, 0 ), NodePath("chest/head"), PoolRealArray( 0, 0, 0, 0 ), NodePath("chest/ArmL"), PoolRealArray( 0, 0, 0, 0 ), NodePath("chest/ArmL/forearmL"), PoolRealArray( 0, 0, 0, 0 ), NodePath("chest/ArmL/forearmL/handL"), PoolRealArray( 1, 1, 1, 1 ), NodePath("chest/ArmR"), PoolRealArray( 0, 0, 0, 0 ), NodePath("chest/ArmR/forearmR"), PoolRealArray( 0, 0, 0, 0 ), NodePath("chest/ArmR/forearmR/handR"), PoolRealArray( 0, 0, 0, 0 ), NodePath("chest/cuisseL"), PoolRealArray( 0, 0, 0, 0 ), NodePath("chest/cuisseL/molletL"), PoolRealArray( 0, 0, 0, 0 ), NodePath("chest/cuisseL/molletL/piedL"), PoolRealArray( 0, 0, 0, 0 ), NodePath("chest/cuisseR"), PoolRealArray( 0, 0, 0, 0 ), NodePath("chest/cuisseR/molletR"), PoolRealArray( 0, 0, 0, 0 ), NodePath("chest/cuisseR/molletR/piedR"), PoolRealArray( 0, 0, 0, 0 ) ]
 
 [node name="bob_dont_mofify" type="Sprite" parent="."]
-editor/display_folded = true
 visible = false
 modulate = Color( 0.517647, 1, 0.419608, 0.415686 )
 texture = ExtResource( 6 )
@@ -1742,35 +1744,35 @@ rest = Transform2D( 1, 0, 0, 1, 2.57024, 9.63841 )
 
 [node name="ArmL" type="Bone2D" parent="Skeleton2D/chest"]
 position = Vector2( 0.385536, -26.4735 )
-rotation = 1.48944
+rotation = -0.0583544
 rest = Transform2D( 1, 0, 0, 1, 0.385536, -26.4735 )
 default_length = 2.0
 
 [node name="forearmL" type="Bone2D" parent="Skeleton2D/chest/ArmL"]
 position = Vector2( -0.0977287, 11.997 )
-rotation = 0.0580155
+rotation = 1.61976
 rest = Transform2D( 1, 0, 0, 1, -0.0977287, 11.997 )
 
 [node name="handL" type="Bone2D" parent="Skeleton2D/chest/ArmL/forearmL"]
 position = Vector2( -0.511684, 16.9587 )
-rotation = 2.90355
+rotation = 1.56486
 rest = Transform2D( 0.00593845, 0.999982, -0.999982, 0.00593845, -0.511684, 16.9587 )
 default_length = 7.0
 
 [node name="ArmR" type="Bone2D" parent="Skeleton2D/chest"]
 position = Vector2( 0.385536, -26.4735 )
-rotation = 1.32691
+rotation = 0.257661
 rest = Transform2D( 1, 0, 0, 1, 0.385536, -26.4735 )
 default_length = 2.0
 
 [node name="forearmR" type="Bone2D" parent="Skeleton2D/chest/ArmR"]
 position = Vector2( -0.0977287, 11.997 )
-rotation = 0.286071
+rotation = 1.92442
 rest = Transform2D( 1, 0, 0, 1, -0.0977287, 11.997 )
 
 [node name="handR" type="Bone2D" parent="Skeleton2D/chest/ArmR/forearmR"]
 position = Vector2( -0.511684, 16.9587 )
-rotation = 2.67287
+rotation = 1.56486
 rest = Transform2D( 0.00593845, 0.999982, -0.999982, 0.00593845, -0.511684, 16.9587 )
 default_length = 7.0
 
@@ -1819,10 +1821,18 @@ one_shot = true
 script = ExtResource( 7 )
 Animation_Player = NodePath("../bob_dont_mofify/AnimationPlayer")
 light_attack = ExtResource( 8 )
+heavy_attack = ExtResource( 9 )
 pos = NodePath("../Position2D")
 
 [node name="Shield" type="Sprite" parent="."]
 visible = false
 texture = ExtResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( -20, -15 )
+shape = SubResource( 7 )
 [connection signal="timeout" from="Stamina_wait" to="." method="_on_Stamina_wait_timeout"]
 [connection signal="timeout" from="Stamina_regen" to="." method="_on_Stamina_regen_timeout"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]

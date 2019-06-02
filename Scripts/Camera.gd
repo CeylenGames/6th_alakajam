@@ -1,11 +1,7 @@
 extends Camera2D
 
-
-export (NodePath) var player_1
-export (NodePath) var player_2
-
-onready var player_one = get_node(player_1)
-onready var player_two = get_node(player_2)
+var player_one
+var player_two
 
 func change_position():
 	var new_pos = (player_one.position + player_two.position)/2
@@ -16,5 +12,6 @@ func change_position():
 	set_zoom(Vector2(1, 1) * zoom_factor/1.35)
 
 func _physics_process(delta):
-	change_position()
-	align()
+	if player_one != null and player_two != null:
+		change_position()
+		align()
