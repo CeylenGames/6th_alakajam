@@ -1,9 +1,139 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Scripts/ChampSelect.gd" type="Script" id=1]
 [ext_resource path="res://Assets/fonts/Roboto/Roboto-Black.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Assets/icon.png" type="Texture" id=3]
-[ext_resource path="res://Assets/Bob/Icon-bob.png" type="Texture" id=4]
+[ext_resource path="res://Assets/body_sample.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Bob/Icon-bob.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Garor/Garor_icon.png" type="Texture" id=6]
+
+[sub_resource type="Animation" id=6]
+resource_name = "blink_1"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Bob/Fond:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Color( 0.788235, 0.0705882, 0.0705882, 1 ), Color( 0.788235, 0.0705882, 0.0705882, 0 ), Color( 0.788235, 0.0705882, 0.0705882, 1 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "blink_2"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Bob/Fond:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Color( 0.247059, 0.164706, 0.705882, 1 ), Color( 0.247059, 0.164706, 0.705882, 0 ), Color( 0.247059, 0.164706, 0.705882, 1 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "blink_both"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Bob/Fond:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Color( 0.247059, 0.164706, 0.705882, 1 ), Color( 0.788235, 0.0705882, 0.0705882, 1 ), Color( 0.247059, 0.164706, 0.705882, 1 ) ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Bob/Fond:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.247059, 0.164706, 0.705882, 0 ), Color( 0.247059, 0.164706, 0.705882, 0 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "blink_1"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Garor/Fond:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Color( 0.788235, 0.0705882, 0.0705882, 1 ), Color( 0.788235, 0.0705882, 0.0705882, 0 ), Color( 0.788235, 0.0705882, 0.0705882, 1 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "blink_2"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Garor/Fond:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Color( 0.247059, 0.164706, 0.705882, 1 ), Color( 0.788235, 0.0705882, 0.0705882, 0 ), Color( 0.247059, 0.164706, 0.705882, 1 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "blink_both"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Garor/Fond:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Color( 0.247059, 0.164706, 0.705882, 1 ), Color( 0.788235, 0.0705882, 0.0705882, 1 ), Color( 0.247059, 0.164706, 0.705882, 1 ) ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Garor/Fond:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.247059, 0.164706, 0.705882, 0 ), Color( 0.247059, 0.164706, 0.705882, 0 ) ]
+}
 
 [sub_resource type="DynamicFont" id=1]
 size = 48
@@ -31,6 +161,22 @@ font_data = ExtResource( 2 )
 
 [node name="Control" type="CanvasLayer"]
 script = ExtResource( 1 )
+actions_p1 = [ "ui_left", "ui_right" ]
+actions_p2 = [ "ui_left_2", "ui_right_2" ]
+anim_1 = NodePath("AnimationPlayer1")
+anim_2 = NodePath("AnimationPlayer2")
+
+[node name="AnimationPlayer1" type="AnimationPlayer" parent="."]
+anims/blink_1 = SubResource( 6 )
+anims/blink_2 = SubResource( 7 )
+anims/blink_both = SubResource( 8 )
+anims/idle = SubResource( 12 )
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+anims/blink_1 = SubResource( 9 )
+anims/blink_2 = SubResource( 10 )
+anims/blink_both = SubResource( 11 )
+anims/idle = SubResource( 13 )
 
 [node name="background" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -230,6 +376,7 @@ margin_bottom = 6.17349
 color = Color( 0.278431, 0.278431, 0.278431, 1 )
 
 [node name="Controls" type="ColorRect" parent="."]
+editor/display_folded = true
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -260,28 +407,42 @@ text = "Next"
 
 [node name="----------------" type="Node" parent="."]
 
-[node name="Bob" type="NinePatchRect" parent="."]
-anchor_top = 0.5
-anchor_bottom = 0.5
-margin_left = 16.245
-margin_top = -44.3676
-margin_right = 136.245
-margin_bottom = 75.6324
+[node name="Bob" type="Sprite" parent="."]
+position = Vector2( 330, 590 )
+scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
-
-[node name="Bob_icon" type="NinePatchRect" parent="Bob"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 55.0
-margin_top = -55.0
-margin_right = 165.0
-margin_bottom = 55.0
-rect_scale = Vector2( -1, 1 )
-texture = ExtResource( 4 )
 __meta__ = {
 "_edit_group_": true
 }
+
+[node name="Fond" type="Sprite" parent="Bob"]
+modulate = Color( 0.247059, 0.164706, 0.705882, 0 )
+scale = Vector2( 9.41545, 9.4153 )
+texture = ExtResource( 4 )
+
+[node name="Bob_icon" type="Sprite" parent="Bob"]
+position = Vector2( 0.0170695, -0.00770938 )
+scale = Vector2( 2.54472, 2.54467 )
+texture = ExtResource( 5 )
+flip_h = true
+
+[node name="Garor" type="Sprite" parent="."]
+position = Vector2( 766, 590 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Fond" type="Sprite" parent="Garor"]
+modulate = Color( 0.247059, 0.164706, 0.705882, 0 )
+scale = Vector2( 9.41545, 9.4153 )
+texture = ExtResource( 4 )
+
+[node name="Garor_icon" type="Sprite" parent="Garor"]
+position = Vector2( 0.0170695, -0.00770938 )
+scale = Vector2( 2.54472, 2.54467 )
+texture = ExtResource( 6 )
+flip_h = true
 [connection signal="button_up" from="Controls/Back_Button" to="." method="_on_Back_Button_button_up"]
 [connection signal="button_up" from="Controls/Next_Button" to="." method="_on_Next_Button_button_up"]
