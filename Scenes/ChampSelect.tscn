@@ -1,34 +1,36 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://Assets/fonts/Roboto/Roboto-Black.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://Assets/icon.png" type="Texture" id=2]
-[ext_resource path="res://Assets/Bob/Icon-bob.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/ChampSelect.gd" type="Script" id=1]
+[ext_resource path="res://Assets/fonts/Roboto/Roboto-Black.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Assets/icon.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Bob/Icon-bob.png" type="Texture" id=4]
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=1]
 size = 48
 use_filter = true
-font_data = ExtResource( 1 )
-
-[sub_resource type="DynamicFont" id=5]
-size = 24
-use_filter = true
-font_data = ExtResource( 1 )
+font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=2]
+size = 24
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
 size = 50
 use_filter = true
-font_data = ExtResource( 1 )
+font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=4]
 size = 36
 use_filter = true
-font_data = ExtResource( 1 )
+font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=5]
 size = 30
-font_data = ExtResource( 1 )
+font_data = ExtResource( 2 )
 
 [node name="Control" type="CanvasLayer"]
+script = ExtResource( 1 )
 
 [node name="background" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -52,7 +54,7 @@ margin_left = -229.0
 margin_top = -28.5
 margin_right = 229.0
 margin_bottom = 28.5
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 1 )
 text = "- Select a Character -"
 align = 1
 valign = 1
@@ -72,7 +74,7 @@ anchor_bottom = 1.0
 margin_left = -229.0
 margin_top = -47.0
 margin_right = 229.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 2 )
 text = "Bob"
 align = 1
 
@@ -91,7 +93,7 @@ margin_left = -31.0
 margin_top = -30.0
 margin_right = 31.0
 margin_bottom = 30.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 text = "P1"
 align = 1
 valign = 1
@@ -137,7 +139,7 @@ margin_left = -229.0
 margin_top = -28.5
 margin_right = 229.0
 margin_bottom = 28.5
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 1 )
 text = "- Select a Character -"
 align = 1
 valign = 1
@@ -161,7 +163,7 @@ anchor_bottom = 1.0
 margin_left = -229.0
 margin_top = -47.0
 margin_right = 229.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 2 )
 text = "Bob"
 align = 1
 
@@ -182,7 +184,7 @@ margin_left = -31.0
 margin_top = -30.0
 margin_right = 31.0
 margin_bottom = 30.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 text = "P2"
 align = 1
 valign = 1
@@ -228,7 +230,6 @@ margin_bottom = 6.17349
 color = Color( 0.278431, 0.278431, 0.278431, 1 )
 
 [node name="Controls" type="ColorRect" parent="."]
-editor/display_folded = true
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -242,7 +243,7 @@ margin_left = 6.00162
 margin_top = -21.0
 margin_right = 85.0016
 margin_bottom = 21.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 5 )
 text = "Back"
 
 [node name="Next_Button" type="Button" parent="Controls"]
@@ -254,7 +255,7 @@ margin_left = -85.0015
 margin_top = -21.0
 margin_right = -6.00146
 margin_bottom = 21.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 5 )
 text = "Next"
 
 [node name="----------------" type="Node" parent="."]
@@ -266,7 +267,7 @@ margin_left = 16.245
 margin_top = -44.3676
 margin_right = 136.245
 margin_bottom = 75.6324
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 
 [node name="Bob_icon" type="NinePatchRect" parent="Bob"]
 anchor_left = 0.5
@@ -278,7 +279,9 @@ margin_top = -55.0
 margin_right = 165.0
 margin_bottom = 55.0
 rect_scale = Vector2( -1, 1 )
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 __meta__ = {
 "_edit_group_": true
 }
+[connection signal="button_up" from="Controls/Back_Button" to="." method="_on_Back_Button_button_up"]
+[connection signal="button_up" from="Controls/Next_Button" to="." method="_on_Next_Button_button_up"]

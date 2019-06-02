@@ -11,6 +11,8 @@ export (NodePath) var p2_win
 onready var p1 = get_node(p1_win)
 onready var p2 = get_node(p2_win)
 
+export (PackedScene) var ControlScene
+
 func _process(delta):
 	if Input.is_action_just_pressed("ui_cancel"):
 		if not get_tree().paused:
@@ -44,3 +46,7 @@ func win(playerOne):
 	yield(get_tree().create_timer(3), "timeout")
 	get_tree().paused = false
 	_on_QuitButton_button_up()
+
+func _on_ControlsButton_button_up():
+	var instance = ControlScene.instance()
+	get_node("../CanvasLayer").add_child(instance)
