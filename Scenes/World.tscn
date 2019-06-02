@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Scripts/Master.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Input.tscn" type="PackedScene" id=2]
@@ -21,6 +21,7 @@
 [ext_resource path="res://Scripts/TimerText.gd" type="Script" id=19]
 [ext_resource path="res://Assets/body_sample.png" type="Texture" id=20]
 [ext_resource path="res://Prefabs/Wall.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Assets/fight_theme_VSF.ogg" type="AudioStream" id=22]
 
 [sub_resource type="DynamicFont" id=1]
 size = 55
@@ -384,6 +385,10 @@ position = Vector2( -90, 20 )
 
 [node name="Wall4" parent="." instance=ExtResource( 21 )]
 position = Vector2( 90, 20 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 22 )
+autoplay = true
 [connection signal="timeout" from="CanvasLayer/TimerText/Timer" to="CanvasLayer/TimerText" method="_on_Timer_timeout"]
 [connection signal="button_up" from="CanvasLayer/Menu/ResumeButton" to="Master" method="_on_ResumeButton_button_up"]
 [connection signal="button_up" from="CanvasLayer/Menu/ControlsButton" to="Master" method="_on_ControlsButton_button_up"]
