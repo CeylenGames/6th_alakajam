@@ -1,20 +1,22 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/MainMenu.gd" type="Script" id=1]
-[ext_resource path="res://Assets/fonts/Roboto/Roboto-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Scenes/Input.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/fonts/Roboto/Roboto-Regular.ttf" type="DynamicFontData" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 70
 use_filter = true
-font_data = ExtResource( 2 )
+font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 100
 use_filter = true
-font_data = ExtResource( 2 )
+font_data = ExtResource( 3 )
 
 [node name="MainMenu" type="Node"]
 script = ExtResource( 1 )
+ControlScene = ExtResource( 2 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -30,15 +32,27 @@ margin_bottom = 55.0
 custom_fonts/font = SubResource( 1 )
 text = "Play"
 
+[node name="ControlButton" type="Button" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -220.0
+margin_top = 108.0
+margin_right = 220.0
+margin_bottom = 218.0
+custom_fonts/font = SubResource( 1 )
+text = "Control"
+
 [node name="QuitButton" type="Button" parent="CanvasLayer"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -220.0
-margin_top = 118.0
+margin_top = 268.0
 margin_right = 220.0
-margin_bottom = 228.0
+margin_bottom = 378.0
 custom_fonts/font = SubResource( 1 )
 text = "Quit"
 
@@ -56,4 +70,5 @@ text = "Versus Fighting"
 align = 1
 valign = 1
 [connection signal="button_up" from="CanvasLayer/PlayButton" to="." method="_on_PlayButton_button_up"]
+[connection signal="button_up" from="CanvasLayer/ControlButton" to="." method="_on_ControlButton_button_up"]
 [connection signal="button_up" from="CanvasLayer/QuitButton" to="." method="_on_QuitButton_button_up"]

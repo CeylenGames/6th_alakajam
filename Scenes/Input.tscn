@@ -1,0 +1,498 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Scripts/Input.gd" type="Script" id=1]
+[ext_resource path="res://Assets/body_sample.png" type="Texture" id=2]
+[ext_resource path="res://Assets/ui/Titles.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Assets/ui/ButtonControls.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Assets/fonts/Roboto/Roboto-Regular.ttf" type="DynamicFontData" id=5]
+
+[sub_resource type="Animation" id=1]
+resource_name = "fade_in"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 0.588235 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "fade_out"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0.588235 ), Color( 0, 0, 0, 0 ) ]
+}
+
+[sub_resource type="DynamicFont" id=3]
+size = 35
+use_filter = true
+font_data = ExtResource( 5 )
+
+[node name="Input" type="CanvasLayer"]
+pause_mode = 2
+script = ExtResource( 1 )
+control_1 = NodePath("HBoxContainer/Player 1 Controls")
+control_2 = NodePath("HBoxContainer/Player 2 Controls")
+animation_player = NodePath("TextureRect/AnimationPlayer")
+
+[node name="fond" type="TextureRect" parent="."]
+modulate = Color( 0.137255, 0.152941, 0.223529, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 2 )
+expand = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_right = 1536.0
+margin_bottom = 818.0
+custom_constants/separation = 50
+alignment = 1
+
+[node name="Control2" type="Control" parent="HBoxContainer"]
+margin_bottom = 818.0
+
+[node name="Player 1 Controls" type="VBoxContainer" parent="HBoxContainer"]
+editor/display_folded = true
+margin_left = 50.0
+margin_right = 743.0
+margin_bottom = 818.0
+size_flags_horizontal = 3
+custom_constants/separation = 50
+
+[node name="Margin3" type="Control" parent="HBoxContainer/Player 1 Controls"]
+margin_right = 693.0
+
+[node name="Player 1 Column" type="Label" parent="HBoxContainer/Player 1 Controls"]
+margin_top = 50.0
+margin_right = 693.0
+margin_bottom = 138.0
+size_flags_vertical = 6
+custom_fonts/font = ExtResource( 3 )
+text = "Player 1 Controls"
+align = 1
+valign = 1
+
+[node name="Left1" type="HBoxContainer" parent="HBoxContainer/Player 1 Controls" groups=[
+"Label_Control",
+]]
+margin_top = 188.0
+margin_right = 693.0
+margin_bottom = 264.0
+size_flags_horizontal = 7
+size_flags_vertical = 7
+
+[node name="Name" type="Label" parent="HBoxContainer/Player 1 Controls/Left1"]
+margin_right = 344.0
+margin_bottom = 76.0
+size_flags_horizontal = 3
+size_flags_vertical = 5
+custom_fonts/font = ExtResource( 4 )
+text = "Action Name"
+align = 1
+valign = 1
+
+[node name="Button" type="Button" parent="HBoxContainer/Player 1 Controls/Left1" groups=[
+"ui_left_2",
+]]
+margin_left = 348.0
+margin_right = 693.0
+margin_bottom = 76.0
+size_flags_horizontal = 3
+size_flags_vertical = 5
+custom_fonts/font = ExtResource( 4 )
+text = "Change"
+
+[node name="Right1" type="HBoxContainer" parent="HBoxContainer/Player 1 Controls" groups=[
+"Label_Control",
+]]
+margin_top = 314.0
+margin_right = 693.0
+margin_bottom = 390.0
+size_flags_horizontal = 7
+size_flags_vertical = 7
+
+[node name="Name" type="Label" parent="HBoxContainer/Player 1 Controls/Right1"]
+margin_top = 15.0
+margin_right = 344.0
+margin_bottom = 60.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 4 )
+text = "Action Name"
+align = 1
+valign = 1
+
+[node name="Button" type="Button" parent="HBoxContainer/Player 1 Controls/Right1" groups=[
+"ui_right_2",
+]]
+margin_left = 348.0
+margin_right = 693.0
+margin_bottom = 76.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 4 )
+text = "Change"
+
+[node name="Block1" type="HBoxContainer" parent="HBoxContainer/Player 1 Controls" groups=[
+"Label_Control",
+]]
+margin_top = 440.0
+margin_right = 693.0
+margin_bottom = 516.0
+size_flags_horizontal = 7
+size_flags_vertical = 7
+
+[node name="Name" type="Label" parent="HBoxContainer/Player 1 Controls/Block1"]
+margin_top = 15.0
+margin_right = 344.0
+margin_bottom = 60.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 4 )
+text = "Action Name"
+align = 1
+valign = 1
+
+[node name="Button" type="Button" parent="HBoxContainer/Player 1 Controls/Block1" groups=[
+"ui_down_2",
+]]
+margin_left = 348.0
+margin_right = 693.0
+margin_bottom = 76.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 4 )
+text = "Change"
+
+[node name="Light Attack1" type="HBoxContainer" parent="HBoxContainer/Player 1 Controls" groups=[
+"Label_Control",
+]]
+margin_top = 566.0
+margin_right = 693.0
+margin_bottom = 642.0
+size_flags_horizontal = 7
+size_flags_vertical = 7
+
+[node name="Name" type="Label" parent="HBoxContainer/Player 1 Controls/Light Attack1"]
+margin_top = 15.0
+margin_right = 344.0
+margin_bottom = 60.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 4 )
+text = "Action Name"
+align = 1
+valign = 1
+
+[node name="Button" type="Button" parent="HBoxContainer/Player 1 Controls/Light Attack1" groups=[
+"light_attack_2",
+]]
+margin_left = 348.0
+margin_right = 693.0
+margin_bottom = 76.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 4 )
+text = "Change"
+
+[node name="Heavy Attack1" type="HBoxContainer" parent="HBoxContainer/Player 1 Controls" groups=[
+"Label_Control",
+]]
+margin_top = 692.0
+margin_right = 693.0
+margin_bottom = 768.0
+size_flags_horizontal = 7
+size_flags_vertical = 7
+
+[node name="Name" type="Label" parent="HBoxContainer/Player 1 Controls/Heavy Attack1"]
+margin_top = 15.0
+margin_right = 344.0
+margin_bottom = 60.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 4 )
+text = "Action Name"
+align = 1
+valign = 1
+
+[node name="Button" type="Button" parent="HBoxContainer/Player 1 Controls/Heavy Attack1" groups=[
+"heavy_attack_2",
+]]
+margin_left = 348.0
+margin_right = 693.0
+margin_bottom = 76.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 4 )
+text = "Change"
+
+[node name="Margin2" type="Control" parent="HBoxContainer/Player 1 Controls"]
+margin_top = 818.0
+margin_right = 693.0
+margin_bottom = 818.0
+
+[node name="Player 2 Controls" type="VBoxContainer" parent="HBoxContainer"]
+editor/display_folded = true
+margin_left = 793.0
+margin_right = 1486.0
+margin_bottom = 818.0
+size_flags_horizontal = 3
+custom_constants/separation = 50
+
+[node name="Margin2" type="Control" parent="HBoxContainer/Player 2 Controls"]
+margin_right = 693.0
+
+[node name="Player 2 Column" type="Label" parent="HBoxContainer/Player 2 Controls"]
+margin_top = 50.0
+margin_right = 693.0
+margin_bottom = 138.0
+size_flags_vertical = 6
+custom_fonts/font = ExtResource( 3 )
+text = "Player 2 Controls"
+align = 1
+valign = 1
+
+[node name="Left2" type="HBoxContainer" parent="HBoxContainer/Player 2 Controls" groups=[
+"Label_Control",
+]]
+margin_top = 188.0
+margin_right = 693.0
+margin_bottom = 264.0
+size_flags_horizontal = 7
+size_flags_vertical = 7
+
+[node name="Name" type="Label" parent="HBoxContainer/Player 2 Controls/Left2"]
+margin_right = 344.0
+margin_bottom = 76.0
+size_flags_horizontal = 3
+size_flags_vertical = 5
+custom_fonts/font = ExtResource( 4 )
+text = "Action Name"
+align = 1
+valign = 1
+
+[node name="Button" type="Button" parent="HBoxContainer/Player 2 Controls/Left2" groups=[
+"ui_left",
+]]
+margin_left = 348.0
+margin_right = 693.0
+margin_bottom = 76.0
+size_flags_horizontal = 3
+size_flags_vertical = 5
+custom_fonts/font = ExtResource( 4 )
+text = "Change"
+
+[node name="Right2" type="HBoxContainer" parent="HBoxContainer/Player 2 Controls" groups=[
+"Label_Control",
+]]
+margin_top = 314.0
+margin_right = 693.0
+margin_bottom = 390.0
+size_flags_horizontal = 7
+size_flags_vertical = 7
+
+[node name="Name" type="Label" parent="HBoxContainer/Player 2 Controls/Right2"]
+margin_top = 15.0
+margin_right = 344.0
+margin_bottom = 60.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 4 )
+text = "Action Name"
+align = 1
+valign = 1
+
+[node name="Button" type="Button" parent="HBoxContainer/Player 2 Controls/Right2" groups=[
+"ui_right",
+]]
+margin_left = 348.0
+margin_right = 693.0
+margin_bottom = 76.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 4 )
+text = "Change"
+
+[node name="Block2" type="HBoxContainer" parent="HBoxContainer/Player 2 Controls" groups=[
+"Label_Control",
+]]
+margin_top = 440.0
+margin_right = 693.0
+margin_bottom = 516.0
+size_flags_horizontal = 7
+size_flags_vertical = 7
+
+[node name="Name" type="Label" parent="HBoxContainer/Player 2 Controls/Block2"]
+margin_top = 15.0
+margin_right = 344.0
+margin_bottom = 60.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 4 )
+text = "Action Name"
+align = 1
+valign = 1
+
+[node name="Button" type="Button" parent="HBoxContainer/Player 2 Controls/Block2" groups=[
+"ui_down",
+]]
+margin_left = 348.0
+margin_right = 693.0
+margin_bottom = 76.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 4 )
+text = "Change"
+
+[node name="Light Attack2" type="HBoxContainer" parent="HBoxContainer/Player 2 Controls" groups=[
+"Label_Control",
+]]
+margin_top = 566.0
+margin_right = 693.0
+margin_bottom = 642.0
+size_flags_horizontal = 7
+size_flags_vertical = 7
+
+[node name="Name" type="Label" parent="HBoxContainer/Player 2 Controls/Light Attack2"]
+margin_top = 15.0
+margin_right = 344.0
+margin_bottom = 60.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 4 )
+text = "Action Name"
+align = 1
+valign = 1
+
+[node name="Button" type="Button" parent="HBoxContainer/Player 2 Controls/Light Attack2" groups=[
+"light_attack",
+]]
+margin_left = 348.0
+margin_right = 693.0
+margin_bottom = 76.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 4 )
+text = "Change"
+
+[node name="Heavy Attack2" type="HBoxContainer" parent="HBoxContainer/Player 2 Controls" groups=[
+"Label_Control",
+]]
+margin_top = 692.0
+margin_right = 693.0
+margin_bottom = 768.0
+size_flags_horizontal = 7
+size_flags_vertical = 7
+
+[node name="Name" type="Label" parent="HBoxContainer/Player 2 Controls/Heavy Attack2"]
+margin_top = 15.0
+margin_right = 344.0
+margin_bottom = 60.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 4 )
+text = "Action Name"
+align = 1
+valign = 1
+
+[node name="Button" type="Button" parent="HBoxContainer/Player 2 Controls/Heavy Attack2" groups=[
+"heavy_attack",
+]]
+margin_left = 348.0
+margin_right = 693.0
+margin_bottom = 76.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 4 )
+text = "Change"
+
+[node name="Margin" type="Control" parent="HBoxContainer/Player 2 Controls"]
+margin_top = 818.0
+margin_right = 693.0
+margin_bottom = 818.0
+
+[node name="Control" type="Control" parent="HBoxContainer"]
+margin_left = 1536.0
+margin_right = 1536.0
+margin_bottom = 818.0
+
+[node name="ReturnButton" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -150.0
+margin_top = -54.0
+margin_right = 150.0
+custom_fonts/font = ExtResource( 4 )
+text = "Return"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+editor/display_folded = true
+modulate = Color( 0, 0, 0, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource( 2 )
+expand = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TextureRect"]
+anims/fade_in = SubResource( 1 )
+anims/fade_out = SubResource( 2 )
+
+[node name="ChangeControl" type="Panel" parent="."]
+editor/display_folded = true
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -214.0
+margin_top = -153.5
+margin_right = 214.0
+margin_bottom = 153.5
+
+[node name="Title" type="Label" parent="ChangeControl"]
+margin_right = 428.0
+margin_bottom = 102.0
+custom_fonts/font = ExtResource( 4 )
+text = "Previous input : "
+align = 1
+valign = 1
+
+[node name="OK_Button" type="Button" parent="ChangeControl"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -118.0
+margin_top = 86.5
+margin_right = 118.0
+margin_bottom = 137.5
+custom_fonts/font = ExtResource( 4 )
+text = "OK"
+
+[node name="Label" type="Label" parent="ChangeControl"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -141.5
+margin_top = -35.0
+margin_right = 141.5
+margin_bottom = 35.0
+custom_fonts/font = SubResource( 3 )
+text = "Press any key ..."
+align = 1
+valign = 1
+[connection signal="button_up" from="HBoxContainer/Player 1 Controls/Left1/Button" to="." method="_on_Button_button_up" binds= [ "ui_left_2" ]]
+[connection signal="button_up" from="HBoxContainer/Player 1 Controls/Right1/Button" to="." method="_on_Button_button_up" binds= [ "ui_right_2" ]]
+[connection signal="button_up" from="HBoxContainer/Player 1 Controls/Block1/Button" to="." method="_on_Button_button_up" binds= [ "ui_down_2" ]]
+[connection signal="button_up" from="HBoxContainer/Player 1 Controls/Light Attack1/Button" to="." method="_on_Button_button_up" binds= [ "light_attack_2" ]]
+[connection signal="button_up" from="HBoxContainer/Player 1 Controls/Heavy Attack1/Button" to="." method="_on_Button_button_up" binds= [ "heavy_attack_2" ]]
+[connection signal="button_up" from="HBoxContainer/Player 2 Controls/Left2/Button" to="." method="_on_Button_button_up" binds= [ "ui_left" ]]
+[connection signal="button_up" from="HBoxContainer/Player 2 Controls/Right2/Button" to="." method="_on_Button_button_up" binds= [ "ui_right" ]]
+[connection signal="button_up" from="HBoxContainer/Player 2 Controls/Block2/Button" to="." method="_on_Button_button_up" binds= [ "ui_down" ]]
+[connection signal="button_up" from="HBoxContainer/Player 2 Controls/Light Attack2/Button" to="." method="_on_Button_button_up" binds= [ "light_attack" ]]
+[connection signal="button_up" from="HBoxContainer/Player 2 Controls/Heavy Attack2/Button" to="." method="_on_Button_button_up" binds= [ "heavy_attack" ]]
+[connection signal="button_up" from="ReturnButton" to="." method="_on_ReturnButton_button_up"]
+[connection signal="button_up" from="ChangeControl/OK_Button" to="." method="_on_OK_Button_button_up"]
