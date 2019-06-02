@@ -165,7 +165,6 @@ use_filter = true
 font_data = ExtResource( 2 )
 
 [node name="Control" type="CanvasLayer"]
-editor/display_folded = true
 script = ExtResource( 1 )
 actions_p1 = [ "ui_left_2", "ui_right_2", "light_attack_2", "heavy_attack_2" ]
 actions_p2 = [ "ui_left", "ui_right", "light_attack", "heavy_attack" ]
@@ -212,8 +211,6 @@ align = 1
 valign = 1
 
 [node name="CharacterColor1" type="ColorRect" parent="."]
-editor/display_folded = true
-visible = false
 margin_right = 770.0
 margin_bottom = 362.0
 color = Color( 0.313726, 0.647059, 0.219608, 1 )
@@ -230,6 +227,8 @@ custom_fonts/font = SubResource( 10 )
 text = "Bob"
 align = 1
 
+[node name="Sprite" type="Sprite" parent="CharacterColor1"]
+
 [node name="P1" type="ColorRect" parent="."]
 margin_right = 80.0
 margin_bottom = 80.0
@@ -245,6 +244,7 @@ margin_top = -30.0
 margin_right = 31.0
 margin_bottom = 30.0
 custom_fonts/font = SubResource( 11 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
 text = "P1"
 align = 1
 valign = 1
@@ -318,7 +318,6 @@ text = "Bob"
 align = 1
 
 [node name="P2" type="ColorRect" parent="."]
-editor/display_folded = true
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -80.0
@@ -335,6 +334,7 @@ margin_top = -30.0
 margin_right = 31.0
 margin_bottom = 30.0
 custom_fonts/font = SubResource( 11 )
+custom_colors/font_color = Color( 0.14902, 0, 1, 1 )
 text = "P2"
 align = 1
 valign = 1
